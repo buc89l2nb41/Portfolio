@@ -2,7 +2,6 @@
   const projects = window.projects || [];
   const list = document.getElementById("project-list");
   const year = document.getElementById("year");
-  const header = document.querySelector(".site-header");
 
   if (year) {
     year.textContent = String(new Date().getFullYear());
@@ -65,12 +64,4 @@
   );
 
   document.querySelectorAll(".project-item").forEach((el) => observer.observe(el));
-
-  const onScroll = () => {
-    if (!header) return;
-    header.classList.toggle("is-scrolled", window.scrollY > 12);
-  };
-
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
 })();

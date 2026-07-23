@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>buc89l2nb41 — Portfolio</title>
+    <meta
+      name="description"
+      content="buc89l2nb41의 포트폴리오. 웹·게임·AI 프로젝트를 모아둔 공간입니다."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top">buc89l2nb41</a>
+      <nav class="nav" aria-label="주요">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-heading">
+        <p class="hero-brand reveal">buc89l2nb41</p>
+        <h1 id="hero-heading" class="reveal delay-1">
+          만든 것들을<br />한곳에 모아두는 공간
+        </h1>
+        <p class="hero-lead reveal delay-2">
+          웹, 게임, AI 실험을 기록하는 임시 포트폴리오입니다. 영상은 YouTube로
+          연결됩니다.
+        </p>
+        <div class="hero-actions reveal delay-3">
+          <a class="btn btn-primary" href="#projects">프로젝트 보기</a>
+          <a
+            class="btn btn-ghost"
+            href="https://github.com/buc89l2nb41"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
+        </div>
+        <div class="hero-plane" aria-hidden="true">
+          <div class="hero-grid"></div>
+          <div class="hero-orb"></div>
+        </div>
+      </section>
+
+      <section id="projects" class="section projects" aria-labelledby="projects-heading">
+        <div class="section-head reveal">
+          <h2 id="projects-heading">Projects</h2>
+          <p>코드, 데모, YouTube 링크를 이어서 업데이트할 예정입니다.</p>
+        </div>
+        <ul class="project-list" id="project-list"></ul>
+      </section>
+
+      <section id="about" class="section about" aria-labelledby="about-heading">
+        <div class="section-head reveal">
+          <h2 id="about-heading">About</h2>
+          <p>
+            프론트엔드와 인터랙티브한 웹 경험을 중심으로 만들고 있습니다. 이
+            페이지는 작업물을 빠르게 모아두기 위한 초안이며, 설명·이미지·영상을
+            계속 채워나갈 예정입니다.
+          </p>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact" aria-labelledby="contact-heading">
+        <div class="section-head reveal">
+          <h2 id="contact-heading">Contact</h2>
+          <p>협업이나 문의는 GitHub로 편하게 남겨 주세요.</p>
+        </div>
+        <a
+          class="contact-link reveal"
+          href="https://github.com/buc89l2nb41"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          github.com/buc89l2nb41
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© <span id="year"></span> buc89l2nb41</span>
+      <span>Built for GitHub Pages</span>
+    </footer>
+
+    <script src="./projects.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

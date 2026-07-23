@@ -1,11 +1,6 @@
 (function () {
   const projects = window.projects || [];
   const list = document.getElementById("project-list");
-  const year = document.getElementById("year");
-
-  if (year) {
-    year.textContent = String(new Date().getFullYear());
-  }
 
   function linkOrPlaceholder(url, label) {
     if (url) {

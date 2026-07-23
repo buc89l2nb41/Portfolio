@@ -1,4 +1,4 @@
-# buc89l2nb41 — Portfolio
+# Portfolio
 
 웹 · 게임 · AI 작업을 모아둔 포트폴리오 저장소입니다.
 

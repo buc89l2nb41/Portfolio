@@ -28,7 +28,7 @@ window.projects = [
     summary: "페르소나 기반 대화 경험을 위한 채팅 클라이언트.",
     stack: ["TypeScript", "AI"],
     repo: "https://github.com/buc89l2nb41/PersonaChat",
-    demo: "https://persona-chat-two.vercel.app",
+    demo: "https://persona-chat-gamma.vercel.app",
     youtube: null,
     image: null,
   },

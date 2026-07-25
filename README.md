@@ -53,7 +53,8 @@
   repo: "https://github.com/buc89l2nb41/...",
   demo: "https://....vercel.app",      // 없으면 null
   youtube: "https://youtube.com/...",  // 없으면 null
-  image: "./assets/thumb.png",         // 없으면 null
+  images: ["./assets/growroll/01.png", "./assets/growroll/02.png"], // 없으면 []
+  youtube: "https://youtube.com/...",  // 갤러리에 영상으로 표시, 없으면 null
 }
 ```
 

@@ -1,8 +1,8 @@
 /* 프로젝트 목록 — 여기만 수정하면 포트폴리오가 갱신됩니다.
  *
- * youtube: YouTube 영상 URL (없으면 null)
+ * images: 스크린샷 경로 배열 (예: ["./assets/growroll/01.png"])
+ * youtube: YouTube 영상 URL — 갤러리에 영상 항목으로 표시 (없으면 null)
  * demo: 라이브 데모 URL (없으면 null)
- * image: 썸네일 경로 (예: "./assets/growroll.png", 없으면 null)
  */
 window.projects = [
   {
@@ -12,7 +12,7 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/GrowRoll",
     demo: "https://grow-roll-client.vercel.app",
     youtube: null,
-    image: null,
+    images: [],
   },
   {
     title: "GGPO Webgame",
@@ -21,7 +21,7 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/GGPO_Webgame",
     demo: "https://ggpo-webgame.vercel.app",
     youtube: null,
-    image: null,
+    images: [],
   },
   {
     title: "PersonaChat",
@@ -30,7 +30,7 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/PersonaChat",
     demo: "https://persona-chat-gamma.vercel.app",
     youtube: null,
-    image: null,
+    images: [],
   },
   {
     title: "PersonaChat Server",
@@ -39,7 +39,7 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/PersonaChatServer",
     demo: null,
     youtube: null,
-    image: null,
+    images: [],
   },
   {
     title: "Pocketbase Board",
@@ -48,7 +48,7 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/PocketbaseBoard",
     demo: "https://pocketbase-board.vercel.app",
     youtube: null,
-    image: null,
+    images: [],
   },
   {
     title: "AI Playlist Creator",
@@ -57,7 +57,7 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/AiPlaylistCreator",
     demo: "https://ai-playlist-creator-eight.vercel.app",
     youtube: null,
-    image: null,
+    images: [],
   },
   {
     title: "Prompt Asset Forge",
@@ -66,7 +66,7 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/PromptAssetForge",
     demo: null,
     youtube: null,
-    image: null,
+    images: [],
   },
   {
     title: "Low Poly Cultivar",
@@ -75,6 +75,6 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/LowPolyCultivar",
     demo: null,
     youtube: null,
-    image: null,
+    images: [],
   },
 ];

@@ -12,7 +12,11 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/GrowRoll",
     demo: "https://grow-roll-client.vercel.app",
     youtube: null,
-    images: [],
+    images: [
+      "./assets/growroll/01.png",
+      "./assets/growroll/02.png",
+      "./assets/growroll/03.png",
+    ],
   },
   {
     title: "GGPO Webgame",

@@ -19,6 +19,15 @@ window.projects = [
     ],
   },
   {
+    title: "TranslationChat",
+    summary: "다국어 채팅에서 Gemini로 메시지를 해석·번역하는 실시간 웹 앱.",
+    stack: ["JavaScript", "AI", "Fastify"],
+    repo: "https://github.com/buc89l2nb41/TranslationChat",
+    demo: "https://translationchat.onrender.com",
+    youtube: null,
+    images: [],
+  },
+  {
     title: "GGPO Webgame",
     summary: "롤백 네트코드(GGPO) 컨셉을 웹 게임에 적용해 본 프로젝트.",
     stack: ["TypeScript", "Game"],

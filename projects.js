@@ -28,6 +28,15 @@ window.projects = [
     images: [],
   },
   {
+    title: "Godot NNUE Prompt Chess",
+    summary: "Stockfish NNUE와 Cursor AI 프롬프트로 오프닝·스타일을 지시하며 대국하는 Godot 체스.",
+    stack: ["Godot", "GDScript", "AI"],
+    repo: "https://github.com/buc89l2nb41/GodotNnuePromptChess",
+    demo: null,
+    youtube: null,
+    images: [],
+  },
+  {
     title: "GGPO Webgame",
     summary: "롤백 네트코드(GGPO) 컨셉을 웹 게임에 적용해 본 프로젝트.",
     stack: ["TypeScript", "Game"],

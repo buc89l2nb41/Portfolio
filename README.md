@@ -13,6 +13,7 @@
 | --- | --- | --- | --- | --- |
 | **GrowRoll** | TypeScript, Web | [Live](https://grow-roll-client.vercel.app) | — | [GitHub](https://github.com/buc89l2nb41/GrowRoll) |
 | **TranslationChat** | JavaScript, AI, Fastify | [Live](https://translationchat.onrender.com) | — | [GitHub](https://github.com/buc89l2nb41/TranslationChat) |
+| **Godot NNUE Prompt Chess** | Godot, GDScript, AI | — | — | [GitHub](https://github.com/buc89l2nb41/GodotNnuePromptChess) |
 | **GGPO Webgame** | TypeScript, Game | [Live](https://ggpo-webgame.vercel.app) | — | [GitHub](https://github.com/buc89l2nb41/GGPO_Webgame) |
 | **PersonaChat** | TypeScript, AI | [Live](https://persona-chat-gamma.vercel.app) | — | [GitHub](https://github.com/buc89l2nb41/PersonaChat) |
 | **PersonaChat Server** | TypeScript, Backend | — | — | [GitHub](https://github.com/buc89l2nb41/PersonaChatServer) |

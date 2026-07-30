@@ -10,6 +10,14 @@
     return `<a class="is-disabled" aria-disabled="true">${label}</a>`;
   }
 
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
   function getYouTubeId(url) {
     if (!url) return null;
     const match = url.match(
@@ -22,6 +30,10 @@
     const items = [];
     const youtubeId = getYouTubeId(project.youtube);
 
+    (project.images || []).forEach((src) => {
+      items.push({ type: "image", src, thumb: src });
+    });
+
     if (youtubeId) {
       items.push({
         type: "youtube",
@@ -30,50 +42,28 @@
       });
     }
 
-    (project.images || []).forEach((src) => {
-      items.push({ type: "image", src, thumb: src });
-    });
-
     return items;
-  }
-
-  function fallbackMarkup(title, index) {
-    const initials = title
-      .split(/\s+/)
-      .slice(0, 2)
-      .map((part) => part[0])
-      .join("")
-      .toUpperCase();
-    const num = String(index + 1).padStart(2, "0");
-
-    return `
-      <div class="project-media-fallback" data-tone="${index % 3}" aria-hidden="true">
-        <span class="fallback-num">${num}</span>
-        <span class="fallback-mark">${initials}</span>
-        <span class="fallback-label">Preview soon</span>
-      </div>
-    `;
   }
 
   function mainContentMarkup(item, title) {
     if (item.type === "youtube") {
       return `<iframe
         src="https://www.youtube.com/embed/${item.id}"
-        title="${title} video"
+        title="${escapeHtml(title)} video"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
         loading="lazy"
       ></iframe>`;
     }
 
-    return `<img src="${item.src}" alt="${title} screenshot" loading="lazy" />`;
+    return `<img src="${item.src}" alt="${escapeHtml(title)} screenshot" loading="lazy" />`;
   }
 
-  function galleryMarkup(project, index) {
+  function galleryMarkup(project) {
     const items = buildGalleryItems(project);
 
     if (!items.length) {
-      return fallbackMarkup(project.title, index);
+      return `<div class="project-media-fallback" aria-hidden="true"><span class="fallback-label">No media</span></div>`;
     }
 
     const thumbs = items
@@ -110,7 +100,7 @@
         </div>
         ${
           showNav
-            ? `<div class="gallery-thumbs" role="tablist" aria-label="${project.title} 미디어">${thumbs}</div>`
+            ? `<div class="gallery-thumbs" role="tablist" aria-label="${escapeHtml(project.title)} 미디어">${thumbs}</div>`
             : ""
         }
       </div>
@@ -174,14 +164,16 @@
     const flip = index % 2 === 1 ? " is-flip" : "";
 
     return `
-      <li class="project-item${flip}" style="transition-delay: ${index * 80}ms">
+      <li class="project-item${flip}">
         <div class="project-index" aria-hidden="true">${num}</div>
         <div class="project-copy">
-          <h3>${project.title}</h3>
-          <p class="project-hook">${project.summary}</p>
-          <p class="project-detail">${body}</p>
+          <h3>${escapeHtml(project.title)}</h3>
+          <p class="project-hook">${escapeHtml(project.summary)}</p>
+          <p class="project-detail">${escapeHtml(body)}</p>
           <div class="project-meta">
-            ${(project.stack || []).map((item) => `<span>${item}</span>`).join("")}
+            ${(project.stack || [])
+              .map((item) => `<span>${escapeHtml(item)}</span>`)
+              .join("")}
           </div>
           <div class="project-links">
             ${linkOrPlaceholder(project.repo, "GitHub")}
@@ -189,15 +181,19 @@
             ${linkOrPlaceholder(project.youtube, "YouTube")}
           </div>
         </div>
-        <div class="project-media">${galleryMarkup(project, index)}</div>
+        <div class="project-media">${galleryMarkup(project)}</div>
       </li>
     `;
   }
 
-  function otherMarkup(project, index) {
+  function otherMarkup(project) {
     const badge = project.badge
-      ? `<span class="project-badge">${project.badge}</span>`
+      ? `<span class="project-badge">${escapeHtml(project.badge)}</span>`
       : "";
+    const thumb = (project.images && project.images[0]) || null;
+    const thumbMarkup = thumb
+      ? `<div class="other-thumb"><img src="${thumb}" alt="" loading="lazy" /></div>`
+      : `<div class="other-thumb is-empty" aria-hidden="true"></div>`;
     const links = [
       project.repo
         ? `<a href="${project.repo}" target="_blank" rel="noopener noreferrer">GitHub</a>`
@@ -205,16 +201,20 @@
       project.demo
         ? `<a href="${project.demo}" target="_blank" rel="noopener noreferrer">Demo</a>`
         : "",
+      project.youtube
+        ? `<a href="${project.youtube}" target="_blank" rel="noopener noreferrer">YouTube</a>`
+        : "",
     ]
       .filter(Boolean)
       .join('<span class="other-sep" aria-hidden="true">·</span>');
 
     return `
-      <li class="other-item" style="transition-delay: ${index * 45}ms">
+      <li class="other-item">
+        ${thumbMarkup}
         <div class="other-main">
           ${badge}
-          <h3>${project.title}</h3>
-          <p>${project.summary}</p>
+          <h3>${escapeHtml(project.title)}</h3>
+          <p>${escapeHtml(project.summary)}</p>
         </div>
         <div class="other-links">${links}</div>
       </li>
@@ -235,20 +235,6 @@
   }
 
   if (otherList) {
-    otherList.innerHTML = other.map((project, index) => otherMarkup(project, index)).join("");
+    otherList.innerHTML = other.map((project) => otherMarkup(project)).join("");
   }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-in");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
-  );
-
-  document.querySelectorAll(".project-item, .other-item").forEach((el) => observer.observe(el));
 })();

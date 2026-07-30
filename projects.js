@@ -1,14 +1,23 @@
-/* 프로젝트 목록 — 여기만 수정하면 포트폴리오가 갱신됩니다.
- *
- * tier: "featured" | "other"
- * badge: other만 — "서비스" | "툴" | "프로토타입" | "실험"
- * summary: 한 줄 / detail: featured용 2~3문장 (없으면 summary만)
- * images / youtube / demo / repo: 없으면 null 또는 []
- *
- * 아카이브만(사이트 미표시): Pocketbase, Winwright, _Harness, 솔버 등 — CHRONO_HANDOFF §6A
- * 공개 레포 확인 후 추가 예정: FBNeo Agent, AgentPlay, ModelToSprite, Cadillacs, DiffusionGen
+/* 프로젝트 목록 — mock 미디어·공개 레포가 있다고 가정한 풍성 미리보기 버전.
+ * 실제 에셋으로 교체: assets/mock/*.svg → 스크린샷/영상 썸네일, youtube URL 교체
  */
 window.projects = [
+  {
+    tier: "featured",
+    title: "FBNeo Agent",
+    summary: "Agent가 에뮬레이터를 프레임 단위로 제어·캡처하는 런타임 계측 파이프라인",
+    detail:
+      "MAME 제어가 어려워 FBNeo를 포크해 -agent와 5채널 SHM을 붙였습니다. 화면·입력·메모리를 Agent가 다루게 해, 이후 캡처·훈수형 플레이의 기반이 됐습니다.",
+    stack: ["C++", "FBNeo", "Shared Memory", "Python"],
+    repo: "https://github.com/buc89l2nb41/FBNeo-Agent",
+    demo: null,
+    youtube: "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+    images: [
+      "./assets/mock/fbneo-01.svg",
+      "./assets/mock/fbneo-02.svg",
+      "./assets/mock/fbneo-03.svg",
+    ],
+  },
   {
     tier: "featured",
     title: "Godot NNUE Prompt Chess",
@@ -18,8 +27,12 @@ window.projects = [
     stack: ["Godot", "GDScript", "Stockfish", "AI"],
     repo: "https://github.com/buc89l2nb41/GodotNnuePromptChess",
     demo: null,
-    youtube: null,
-    images: [],
+    youtube: "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+    images: [
+      "./assets/mock/chess-01.svg",
+      "./assets/mock/chess-02.svg",
+      "./assets/mock/chess-03.svg",
+    ],
   },
   {
     tier: "featured",
@@ -29,9 +42,13 @@ window.projects = [
       "GrowRoll에서 Trellis 메시가 무거워 gltfpack 파라미터를 실험하다, 프리셋 비교 UI와 전후좌우 유사도 자동 선택을 만들었습니다. 에셋 생성 파이프라인의 성능 병목을 툴로 푼 사례입니다.",
     stack: ["TypeScript", "Three.js", "gltfpack"],
     repo: "https://github.com/buc89l2nb41/LowPolyCultivar",
-    demo: null,
-    youtube: null,
-    images: [],
+    demo: "https://buc89l2nb41.github.io/LowPolyCultivar/",
+    youtube: "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+    images: [
+      "./assets/mock/lowpoly-01.svg",
+      "./assets/mock/lowpoly-02.svg",
+      "./assets/mock/lowpoly-03.svg",
+    ],
   },
   {
     tier: "featured",
@@ -43,7 +60,19 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/TranslationChat",
     demo: "https://translationchat.onrender.com",
     youtube: null,
-    images: [],
+    images: ["./assets/mock/trans-01.svg", "./assets/mock/trans-02.svg"],
+  },
+  {
+    tier: "featured",
+    title: "AgentPlay",
+    summary: "에뮬 위 훈수형 AI 플레이 런타임 (미완)",
+    detail:
+      "RL이 아니라 Gradio/REPL 코칭 + AUTO로 피벗했습니다. SHM·정책 틱 골격은 있으나 명령 추종 품질은 아직 다듬는 중입니다.",
+    stack: ["Python", "FBNeo", "Gradio", "VLM"],
+    repo: "https://github.com/buc89l2nb41/FBNeo_AgentPlay",
+    demo: null,
+    youtube: "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+    images: ["./assets/mock/agentplay-01.svg", "./assets/mock/agentplay-02.svg"],
   },
   {
     tier: "other",
@@ -54,7 +83,7 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/AiPlaylistCreator",
     demo: "https://ai-playlist-creator-eight.vercel.app",
     youtube: null,
-    images: [],
+    images: ["./assets/mock/playlist-01.svg"],
   },
   {
     tier: "other",
@@ -65,7 +94,7 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/PersonaChat",
     demo: "https://persona-chat-gamma.vercel.app",
     youtube: null,
-    images: [],
+    images: ["./assets/mock/persona-01.svg"],
   },
   {
     tier: "other",
@@ -76,7 +105,18 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/PromptAssetForge",
     demo: null,
     youtube: null,
-    images: [],
+    images: ["./assets/mock/forge-01.svg"],
+  },
+  {
+    tier: "other",
+    badge: "툴",
+    title: "ModelToSprite",
+    summary: "3D 포즈→스프라이트 툴 MVP",
+    stack: ["TypeScript", "Three.js"],
+    repo: "https://github.com/buc89l2nb41/ModelToSprite",
+    demo: null,
+    youtube: null,
+    images: ["./assets/mock/model-01.svg"],
   },
   {
     tier: "other",
@@ -102,6 +142,28 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/GGPO_Webgame",
     demo: "https://ggpo-webgame.vercel.app",
     youtube: null,
-    images: [],
+    images: ["./assets/mock/ggpo-01.svg"],
+  },
+  {
+    tier: "other",
+    badge: "실험",
+    title: "Cadillacs Capture",
+    summary: "Godot + FBNeo 캡처 연동 실험",
+    stack: ["Godot", "FBNeo"],
+    repo: "https://github.com/buc89l2nb41/CadillacsCapture",
+    demo: null,
+    youtube: null,
+    images: ["./assets/mock/cadillacs-01.svg"],
+  },
+  {
+    tier: "other",
+    badge: "실험",
+    title: "DiffusionGen",
+    summary: "스프라이트 생성 파이프라인 실험",
+    stack: ["Python", "Diffusion"],
+    repo: "https://github.com/buc89l2nb41/DiffusionGen",
+    demo: null,
+    youtube: null,
+    images: ["./assets/mock/diffgen-01.svg"],
   },
 ];

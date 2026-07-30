@@ -156,6 +156,15 @@
     });
   }
 
+  function detailParagraphs(text) {
+    return String(text || "")
+      .split(/\n\n+/)
+      .map((part) => part.trim())
+      .filter(Boolean)
+      .map((part) => `<p class="project-detail">${escapeHtml(part)}</p>`)
+      .join("");
+  }
+
   function featuredMarkup(project, index) {
     const body = project.detail || project.summary;
     const num = String(index + 1).padStart(2, "0");
@@ -167,7 +176,7 @@
         <div class="project-copy">
           <h3>${escapeHtml(project.title)}</h3>
           <p class="project-hook">${escapeHtml(project.summary)}</p>
-          <p class="project-detail">${escapeHtml(body)}</p>
+          ${detailParagraphs(body)}
           <div class="project-meta">
             ${(project.stack || [])
               .map((item) => `<span>${escapeHtml(item)}</span>`)

@@ -567,6 +567,10 @@ img {
   font-size: 0.95rem;
 }
 
+.project-detail + .project-detail {
+  margin-top: 0.75rem;
+}
+
 .project-meta {
   display: flex;
   flex-wrap: wrap;

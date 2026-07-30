@@ -60,9 +60,9 @@ window.projects = [
     tier: "featured",
     title: "Prompt Asset Forge",
     summary:
-      "한 번 프롬프트를 넣으면 여러 이미지를 만들고, 그걸 3D 메시 생성으로 한꺼번에 넘기는 배치 도구",
+      "GrowRoll에 넣을 정원 소품 3D를 대량으로 뽑기 위해 만든 배치 툴. 테마 한 줄 → 프롬프트 목록 → 이미지 → Trellis로 GLB까지",
     detail:
-      "Trellis로 3D를 하나씩 뽑으면 너무 느려서, 예전에 만든 플레이리스트 앱처럼 ‘한 번에 여러 개’ 흐름이 필요했습니다. 프롬프트로 컨셉을 잡으면 여러 장의 이미지를 만들고, 그걸 Trellis 같은 3D 생성으로 일괄 넘기는 파이프라인을 짰습니다. 이미지 생성 쪽은 당시 쓰던 Cursor API를 붙였습니다. GrowRoll에 쓸 에셋을 대량으로 준비하려다 만든 툴이고, 나중에 메시가 무거워진 문제는 Low Poly Cultivar로 이어집니다.",
+      "GrowRoll은 굴려 모으는 게임에 도토리·화분·버섯 같은 정원 소품이 많이 필요합니다. 문서에는 티어별로 수십 개 에셋 체크리스트와, ‘이미지 프롬프트 → 그림 → Trellis로 3D → 게임에 GLB’ 흐름이 정리돼 있습니다. Trellis를 하나씩 돌리면 너무 느려서, 예전에 만든 플레이리스트 앱처럼 ‘한 번에 여러 개’가 필요했습니다.\n\nPrompt Asset Forge는 테마(예: 정원)를 넣으면 Cursor API로 프롬프트 목록과 레퍼런스 PNG를 만들고, 로컬 Trellis로 GLB를 일괄 생성하는 웹 도구입니다. GrowRoll용 컬렉션을 뽑는 데 쓰였고, Trellis 결과면 수가 너무 많아(대략 수만 면, 최소도 만 면대) 게임용으로는 무거웠습니다. 그 성능 문제는 이후 gltfpack 실험과 Low Poly Cultivar로 이어집니다.",
     stack: ["Python", "AI", "Cursor API"],
     repo: "https://github.com/buc89l2nb41/PromptAssetForge",
     demo: null,

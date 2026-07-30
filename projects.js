@@ -142,7 +142,7 @@ window.projects = [
     tier: "games",
     title: "GGPO Webgame",
     summary:
-      "웹에서 바로 플레이해 볼 수 있는 격투 프로토타입. 지연을 줄이는 넷코드(GGPO) 느낌이 궁금해서 만들어 봤고, 라이브러리를 깊게 이해한 전문 구현이라기보다 관심·실험에 가깝습니다",
+      "AI로 뽑은 스프라이트(AetherForge 등)를 격투 게임에 넣어 보기 위해 만든 웹 프로토타입에 가깝습니다. 브라우저에서 바로 플레이할 수 있고, 만들다 보니 지연을 줄이는 넷코드(GGPO) 느낌도 궁금해서 붙여 봤지만, 넷코드를 깊게 이해한 전문 구현이라기보다 스프라이트·플레이 실험 쪽이 본래 목적입니다",
     host: "Vercel",
     server: "자체 서버 없음 · WebRTC P2P",
     stack: ["TypeScript", "Game", "WebRTC"],

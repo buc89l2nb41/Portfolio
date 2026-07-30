@@ -37,15 +37,22 @@
     return items;
   }
 
-  function fallbackMarkup(title) {
+  function fallbackMarkup(title, index) {
     const initials = title
       .split(/\s+/)
       .slice(0, 2)
       .map((part) => part[0])
       .join("")
       .toUpperCase();
+    const num = String(index + 1).padStart(2, "0");
 
-    return `<div class="project-media-fallback" aria-hidden="true">${initials}</div>`;
+    return `
+      <div class="project-media-fallback" data-tone="${index % 3}" aria-hidden="true">
+        <span class="fallback-num">${num}</span>
+        <span class="fallback-mark">${initials}</span>
+        <span class="fallback-label">Preview soon</span>
+      </div>
+    `;
   }
 
   function mainContentMarkup(item, title) {
@@ -62,22 +69,22 @@
     return `<img src="${item.src}" alt="${title} screenshot" loading="lazy" />`;
   }
 
-  function galleryMarkup(project) {
+  function galleryMarkup(project, index) {
     const items = buildGalleryItems(project);
 
     if (!items.length) {
-      return fallbackMarkup(project.title);
+      return fallbackMarkup(project.title, index);
     }
 
     const thumbs = items
       .map(
-        (item, index) => `
+        (item, itemIndex) => `
           <button
             type="button"
-            class="gallery-thumb${index === 0 ? " is-active" : ""}"
-            data-index="${index}"
-            aria-label="${item.type === "youtube" ? "영상" : "스크린샷"} ${index + 1}"
-            aria-current="${index === 0 ? "true" : "false"}"
+            class="gallery-thumb${itemIndex === 0 ? " is-active" : ""}"
+            data-index="${itemIndex}"
+            aria-label="${item.type === "youtube" ? "영상" : "스크린샷"} ${itemIndex + 1}"
+            aria-current="${itemIndex === 0 ? "true" : "false"}"
           >
             <img src="${item.thumb}" alt="" loading="lazy" />
             ${item.type === "youtube" ? '<span class="gallery-thumb-play" aria-hidden="true">▶</span>' : ""}
@@ -163,12 +170,16 @@
 
   function featuredMarkup(project, index) {
     const body = project.detail || project.summary;
+    const num = String(index + 1).padStart(2, "0");
+    const flip = index % 2 === 1 ? " is-flip" : "";
+
     return `
-      <li class="project-item" style="transition-delay: ${index * 60}ms">
+      <li class="project-item${flip}" style="transition-delay: ${index * 80}ms">
+        <div class="project-index" aria-hidden="true">${num}</div>
         <div class="project-copy">
           <h3>${project.title}</h3>
           <p class="project-hook">${project.summary}</p>
-          <p>${body}</p>
+          <p class="project-detail">${body}</p>
           <div class="project-meta">
             ${(project.stack || []).map((item) => `<span>${item}</span>`).join("")}
           </div>
@@ -178,7 +189,7 @@
             ${linkOrPlaceholder(project.youtube, "YouTube")}
           </div>
         </div>
-        <div class="project-media">${galleryMarkup(project)}</div>
+        <div class="project-media">${galleryMarkup(project, index)}</div>
       </li>
     `;
   }
@@ -199,7 +210,7 @@
       .join('<span class="other-sep" aria-hidden="true">·</span>');
 
     return `
-      <li class="other-item" style="transition-delay: ${index * 40}ms">
+      <li class="other-item" style="transition-delay: ${index * 45}ms">
         <div class="other-main">
           ${badge}
           <h3>${project.title}</h3>
@@ -236,7 +247,7 @@
         }
       });
     },
-    { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
+    { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
   );
 
   document.querySelectorAll(".project-item, .other-item").forEach((el) => observer.observe(el));

@@ -17,37 +17,67 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="atmosphere" aria-hidden="true"></div>
+    <div class="atmosphere" aria-hidden="true">
+      <div class="atmosphere-wash"></div>
+      <div class="atmosphere-grain"></div>
+    </div>
+
+    <header class="site-nav">
+      <a class="site-nav-brand" href="#top">Portfolio</a>
+      <nav class="site-nav-links" aria-label="섹션">
+        <a href="#featured">Featured</a>
+        <a href="#more">More</a>
+        <a
+          href="https://github.com/buc89l2nb41"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub</a
+        >
+      </nav>
+    </header>
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-heading">
-        <p class="hero-brand reveal">Portfolio</p>
-        <h1 id="hero-heading" class="reveal delay-1">
-          게임·엔진 런타임에 Agent가 붙을 수 있게,<br />
-          관측·제어·검증 도구를 만듭니다
-        </h1>
-        <p class="hero-lead reveal delay-2">
-          LLM을 그대로 믿기보다, 측정·게이트·비교로 막는 쪽의 실험과 툴을
-          모아 두었습니다.
-        </p>
-        <div class="hero-actions reveal delay-3">
-          <a class="btn btn-primary" href="#featured">Featured</a>
-          <a
-            class="btn btn-ghost"
-            href="https://github.com/buc89l2nb41"
-            target="_blank"
-            rel="noopener noreferrer"
-            >GitHub</a
-          >
+        <div class="hero-copy">
+          <p class="hero-brand reveal">
+            <span class="hero-brand-mark">Portfolio</span>
+          </p>
+          <h1 id="hero-heading" class="reveal delay-1">
+            게임·엔진 런타임에 Agent가 붙을 수 있게,<br />
+            관측·제어·검증 도구를 만듭니다
+          </h1>
+          <p class="hero-lead reveal delay-2">
+            LLM을 그대로 믿기보다, 측정·게이트·비교로 막는 쪽의 실험과 툴을
+            모아 두었습니다.
+          </p>
+          <div class="hero-actions reveal delay-3">
+            <a class="btn btn-primary" href="#featured">Featured 보기</a>
+            <a
+              class="btn btn-ghost"
+              href="https://github.com/buc89l2nb41"
+              target="_blank"
+              rel="noopener noreferrer"
+              >GitHub</a
+            >
+          </div>
         </div>
-        <div class="hero-plane" aria-hidden="true">
-          <div class="hero-grid"></div>
-          <div class="hero-orb"></div>
-        </div>
+
+        <aside class="hero-aside reveal delay-2" aria-hidden="true">
+          <div class="hero-signal">
+            <span class="hero-signal-label">Focus</span>
+            <p>Observe · Control · Gate · Compare</p>
+          </div>
+          <div class="hero-plane">
+            <div class="hero-grid"></div>
+            <div class="hero-orb"></div>
+            <div class="hero-scan"></div>
+          </div>
+        </aside>
       </section>
 
       <section id="featured" class="section projects" aria-labelledby="featured-heading">
         <div class="section-head reveal">
+          <p class="section-kicker">Selected work</p>
           <h2 id="featured-heading">Featured</h2>
           <p>관측·제어·게이트·비교 — 깊게 보여줄 작업입니다.</p>
         </div>
@@ -56,6 +86,7 @@
 
       <section id="more" class="section projects projects-more" aria-labelledby="more-heading">
         <div class="section-head reveal">
+          <p class="section-kicker">Also built</p>
           <h2 id="more-heading">More</h2>
           <p>양감을 위한 한 줄 목록입니다. 성격만 작게 표기합니다.</p>
         </div>
@@ -63,7 +94,12 @@
       </section>
     </main>
 
-    <script src="./projects.js?v=20260730"></script>
-    <script src="./script.js?v=20260730"></script>
+    <footer class="site-footer">
+      <p>Built for showing the work, not the noise.</p>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <script src="./projects.js?v=20260730b"></script>
+    <script src="./script.js?v=20260730b"></script>
   </body>
 </html>

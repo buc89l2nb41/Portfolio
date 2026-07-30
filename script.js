@@ -1,7 +1,5 @@
 (function () {
   const projects = window.projects || [];
-  const featuredList = document.getElementById("featured-list");
-  const otherList = document.getElementById("other-list");
 
   function linkOrPlaceholder(url, label) {
     if (url) {
@@ -221,7 +219,12 @@
     `;
   }
 
+  const featuredList = document.getElementById("featured-list");
+  const servicesList = document.getElementById("services-list");
+  const otherList = document.getElementById("other-list");
+
   const featured = projects.filter((p) => p.tier === "featured");
+  const services = projects.filter((p) => p.tier === "services");
   const other = projects.filter((p) => p.tier === "other");
 
   if (featuredList) {
@@ -232,6 +235,10 @@
     featuredList.querySelectorAll(".project-gallery").forEach((gallery, index) => {
       initGallery(gallery, featured[index]);
     });
+  }
+
+  if (servicesList) {
+    servicesList.innerHTML = services.map((project) => otherMarkup(project)).join("");
   }
 
   if (otherList) {

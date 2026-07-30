@@ -1,5 +1,6 @@
-/* 프로젝트 목록 — 설명은 쉬운 말 우선. 기술 약어는 풀어 씀.
- * 실제 에셋: assets/ 아래 스크린샷·목업. youtube는 샘플/본인 영상 URL.
+/* 프로젝트 목록 — 설명은 쉬운 말 우선.
+ * tier: "featured" | "services" | "other"
+ * services = AI API로 만들어 배포·실행 가능한 웹 서비스
  */
 window.projects = [
   {
@@ -56,15 +57,16 @@ window.projects = [
   },
   {
     tier: "featured",
-    title: "TranslationChat",
-    summary: "여러 언어로 채팅하면 AI가 뜻을 해석·번역해 주는 웹 서비스 (실제로 배포됨)",
+    title: "Prompt Asset Forge",
+    summary:
+      "한 번 프롬프트를 넣으면 여러 이미지를 만들고, 그걸 3D 메시 생성으로 한꺼번에 넘기는 배치 도구",
     detail:
-      "AI API를 붙여, 브라우저에서 바로 쓸 수 있는 번역·대화 웹앱을 만들고 서버에 올려 두었습니다. 로컬에서만 돌아가는 실험이 아니라, 링크만 있으면 다른 사람도 열어볼 수 있게 한 쪽에 가깝습니다. 초반에 ‘AI로 웹 서비스를 끝까지 만들어 배포해 보기’ 연습이자, API를 실제 제품 형태로 붙인 경험의 증거로 두었습니다.",
-    stack: ["JavaScript", "AI", "Fastify"],
-    repo: "https://github.com/buc89l2nb41/TranslationChat",
-    demo: "https://translationchat.onrender.com",
+      "Trellis로 3D를 하나씩 뽑으면 너무 느려서, 예전에 만든 플레이리스트 앱처럼 ‘한 번에 여러 개’ 흐름이 필요했습니다. 프롬프트로 컨셉을 잡으면 여러 장의 이미지를 만들고, 그걸 Trellis 같은 3D 생성으로 일괄 넘기는 파이프라인을 짰습니다. 이미지 생성 쪽은 당시 쓰던 Cursor API를 붙였습니다. GrowRoll에 쓸 에셋을 대량으로 준비하려다 만든 툴이고, 나중에 메시가 무거워진 문제는 Low Poly Cultivar로 이어집니다.",
+    stack: ["Python", "AI", "Cursor API"],
+    repo: "https://github.com/buc89l2nb41/PromptAssetForge",
+    demo: null,
     youtube: null,
-    images: ["./assets/mock/trans-01.svg", "./assets/mock/trans-02.svg"],
+    images: ["./assets/mock/forge-01.svg"],
   },
   {
     tier: "featured",
@@ -80,8 +82,18 @@ window.projects = [
     images: ["./assets/mock/agentplay-01.svg", "./assets/mock/agentplay-02.svg"],
   },
   {
-    tier: "other",
-    badge: "서비스",
+    tier: "services",
+    title: "TranslationChat",
+    summary:
+      "여러 언어로 채팅하면 AI가 뜻을 해석·번역해 주는 웹 서비스. AI API를 붙여 서버에 올려 두었고, 링크만 있으면 바로 열어볼 수 있습니다",
+    stack: ["JavaScript", "AI", "Fastify"],
+    repo: "https://github.com/buc89l2nb41/TranslationChat",
+    demo: "https://translationchat.onrender.com",
+    youtube: null,
+    images: ["./assets/mock/trans-01.svg", "./assets/mock/trans-02.svg"],
+  },
+  {
+    tier: "services",
     title: "AI Playlist Creator",
     summary:
       "원하는 분위기를 말하면 AI가 곡 목록(플레이리스트)을 짜 주는 웹 서비스. Agent API를 붙여 배포까지 해 본 초기 작품",
@@ -92,28 +104,15 @@ window.projects = [
     images: ["./assets/mock/playlist-01.svg"],
   },
   {
-    tier: "other",
-    badge: "서비스",
+    tier: "services",
     title: "PersonaChat",
     summary:
-      "정해 둔 성격(페르소나)으로 대화하는 채팅 웹앱과, 그걸 받쳐 주는 서버. AI API로 캐릭터처럼 말하게 한 서비스",
+      "정해 둔 성격(페르소나)으로 대화하는 채팅 웹앱과 서버. AI API로 캐릭터처럼 말하게 해 배포한 서비스",
     stack: ["TypeScript", "AI"],
     repo: "https://github.com/buc89l2nb41/PersonaChat",
     demo: "https://persona-chat-gamma.vercel.app",
     youtube: null,
     images: ["./assets/mock/persona-01.svg"],
-  },
-  {
-    tier: "other",
-    badge: "툴",
-    title: "Prompt Asset Forge",
-    summary:
-      "한 번 프롬프트를 넣으면 여러 컨셉 이미지를 만들고, 그걸 Trellis 같은 3D 생성으로 한꺼번에 넘기는 배치 도구. 예전에 만든 플레이리스트 앱처럼 ‘한 번에 여러 개’ 흐름을 에셋 생산에 옮긴 것. 이미지 쪽은 Cursor API를 사용",
-    stack: ["Python", "AI"],
-    repo: "https://github.com/buc89l2nb41/PromptAssetForge",
-    demo: null,
-    youtube: null,
-    images: ["./assets/mock/forge-01.svg"],
   },
   {
     tier: "other",

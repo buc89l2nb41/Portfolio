@@ -9,3 +9,8 @@ Thumbs.db
 # Env / secrets
 .env
 .env.*
+
+# Local handoff (do not push)
+CHRONO_HANDOFF.md
+*_HANDOFF.md
+

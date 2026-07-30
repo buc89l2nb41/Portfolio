@@ -6,7 +6,7 @@
     <title>Portfolio</title>
     <meta
       name="description"
-      content="웹·게임·AI 프로젝트를 모아둔 포트폴리오입니다."
+      content="게임·엔진 런타임에 Agent가 붙을 수 있게, 관측·제어·검증 도구를 만드는 포트폴리오입니다."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,14 +23,15 @@
       <section class="hero" aria-labelledby="hero-heading">
         <p class="hero-brand reveal">Portfolio</p>
         <h1 id="hero-heading" class="reveal delay-1">
-          만든 것들을<br />한곳에 모아두는 공간
+          게임·엔진 런타임에 Agent가 붙을 수 있게,<br />
+          관측·제어·검증 도구를 만듭니다
         </h1>
         <p class="hero-lead reveal delay-2">
-          웹, 게임, AI 실험을 기록하는 임시 포트폴리오입니다. 영상은 YouTube로
-          연결됩니다.
+          LLM을 그대로 믿기보다, 측정·게이트·비교로 막는 쪽의 실험과 툴을
+          모아 두었습니다.
         </p>
         <div class="hero-actions reveal delay-3">
-          <a class="btn btn-primary" href="#projects">프로젝트 보기</a>
+          <a class="btn btn-primary" href="#featured">Featured</a>
           <a
             class="btn btn-ghost"
             href="https://github.com/buc89l2nb41"
@@ -45,16 +46,24 @@
         </div>
       </section>
 
-      <section id="projects" class="section projects" aria-labelledby="projects-heading">
+      <section id="featured" class="section projects" aria-labelledby="featured-heading">
         <div class="section-head reveal">
-          <h2 id="projects-heading">Projects</h2>
-          <p>코드, 데모, YouTube 링크를 이어서 업데이트할 예정입니다.</p>
+          <h2 id="featured-heading">Featured</h2>
+          <p>관측·제어·게이트·비교 — 깊게 보여줄 작업입니다.</p>
         </div>
-        <ul class="project-list" id="project-list"></ul>
+        <ul class="project-list" id="featured-list"></ul>
+      </section>
+
+      <section id="more" class="section projects projects-more" aria-labelledby="more-heading">
+        <div class="section-head reveal">
+          <h2 id="more-heading">More</h2>
+          <p>양감을 위한 한 줄 목록입니다. 성격만 작게 표기합니다.</p>
+        </div>
+        <ul class="other-list" id="other-list"></ul>
       </section>
     </main>
 
-    <script src="./projects.js?v=20260727"></script>
-    <script src="./script.js?v=20260727"></script>
+    <script src="./projects.js?v=20260730"></script>
+    <script src="./script.js?v=20260730"></script>
   </body>
 </html>

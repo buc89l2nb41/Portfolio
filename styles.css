@@ -86,11 +86,11 @@ img {
 
 .hero h1 {
   margin: 0;
-  max-width: 14ch;
+  max-width: 22ch;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5.5vw, 3.75rem);
+  font-size: clamp(1.65rem, 4.2vw, 2.85rem);
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.02em;
 }
 
@@ -388,6 +388,99 @@ img {
   color: var(--ink-soft);
 }
 
+.project-copy .project-hook {
+  margin-bottom: 0.65rem;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.project-copy .project-hook + p {
+  font-size: 0.95rem;
+}
+
+.other-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.other-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem 1.5rem;
+  align-items: baseline;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--line);
+  opacity: 0;
+  transform: translateY(0.75rem);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.other-item.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.other-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem 0.65rem;
+  min-width: 0;
+}
+
+.other-main h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 400;
+}
+
+.other-main p {
+  margin: 0;
+  flex: 1 1 12rem;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.project-badge {
+  flex: 0 0 auto;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  padding: 0.12rem 0.4rem;
+  border-radius: 0.2rem;
+}
+
+.other-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.other-links a {
+  color: var(--accent);
+}
+
+.other-links a:hover {
+  color: var(--accent-hot);
+}
+
+.other-sep {
+  color: rgba(61, 82, 71, 0.4);
+}
+
+.projects-more {
+  padding-top: 0.5rem;
+}
+
 .project-meta {
   display: flex;
   flex-wrap: wrap;
@@ -523,6 +616,10 @@ img {
     order: -1;
     min-height: 11rem;
   }
+
+  .other-item {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 560px) {
@@ -543,6 +640,7 @@ img {
 
   .reveal,
   .project-item,
+  .other-item,
   .hero-grid,
   .hero-orb {
     animation: none !important;

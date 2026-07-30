@@ -125,7 +125,7 @@ window.projects = [
     tier: "games",
     title: "GrowRoll",
     summary:
-      "굴려 다니며 물건을 모아 커지는(괴혼 비슷한) 웹 3D 게임. 브라우저에서 바로 플레이할 수 있습니다. Trellis 메시를 썼고, 면이 많아 성능이 나빠져 이후 Low Poly Cultivar로 이어짐",
+      "굴려 다니며 물건을 모아 커지는(괴혼 비슷한) 웹 3D 게임. 브라우저에서 바로 플레이할 수 있습니다. Trellis 메시를 넣었고(대량 생성은 Prompt Asset Forge), 면이 많아 성능이 나빠져 Low Poly Cultivar로 이어짐",
     host: "Vercel",
     server: "프론트만 (멀티는 선택 WebSocket)",
     stack: ["TypeScript", "Web"],

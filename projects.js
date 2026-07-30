@@ -42,12 +42,13 @@ window.projects = [
       "GrowRoll에서 Trellis 메시가 무거워 gltfpack 파라미터를 실험하다, 프리셋 비교 UI와 전후좌우 유사도 자동 선택을 만들었습니다. 에셋 생성 파이프라인의 성능 병목을 툴로 푼 사례입니다.",
     stack: ["TypeScript", "Three.js", "gltfpack"],
     repo: "https://github.com/buc89l2nb41/LowPolyCultivar",
-    demo: "https://buc89l2nb41.github.io/LowPolyCultivar/",
-    youtube: "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+    demo: null,
+    youtube: null,
     images: [
-      "./assets/mock/lowpoly-01.svg",
-      "./assets/mock/lowpoly-02.svg",
-      "./assets/mock/lowpoly-03.svg",
+      "./assets/lowpoly/01-home.png",
+      "./assets/lowpoly/03-after-generate.png",
+      "./assets/lowpoly/04-mid.png",
+      "./assets/lowpoly/05-bottom.png",
     ],
   },
   {

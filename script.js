@@ -194,9 +194,18 @@
   }
 
   function otherMarkup(project) {
-    const badge = project.badge
-      ? `<span class="project-badge">${escapeHtml(project.badge)}</span>`
-      : "";
+    const badges = [];
+    if (project.host) {
+      badges.push(
+        `<span class="project-badge project-badge-host">${escapeHtml(project.host)}</span>`,
+      );
+    }
+    if (project.badge) {
+      badges.push(
+        `<span class="project-badge">${escapeHtml(project.badge)}</span>`,
+      );
+    }
+    const badge = badges.join("");
     const thumb = (project.images && project.images[0]) || null;
     const thumbMarkup = thumb
       ? `<div class="other-thumb"><img src="${thumb}" alt="" loading="lazy" /></div>`
@@ -206,7 +215,7 @@
         ? `<a href="${project.repo}" target="_blank" rel="noopener noreferrer">GitHub</a>`
         : "",
       project.demo
-        ? `<a href="${project.demo}" target="_blank" rel="noopener noreferrer">Demo</a>`
+        ? `<a href="${project.demo}" target="_blank" rel="noopener noreferrer">${project.tier === "games" ? "Play" : "Demo"}</a>`
         : "",
       project.youtube
         ? `<a href="${project.youtube}" target="_blank" rel="noopener noreferrer">YouTube</a>`
@@ -230,10 +239,12 @@
 
   const featuredList = document.getElementById("featured-list");
   const servicesList = document.getElementById("services-list");
+  const gamesList = document.getElementById("games-list");
   const otherList = document.getElementById("other-list");
 
   const featured = projects.filter((p) => p.tier === "featured");
   const services = projects.filter((p) => p.tier === "services");
+  const games = projects.filter((p) => p.tier === "games");
   const other = projects.filter((p) => p.tier === "other");
 
   if (featuredList) {
@@ -248,6 +259,10 @@
 
   if (servicesList) {
     servicesList.innerHTML = services.map((project) => otherMarkup(project)).join("");
+  }
+
+  if (gamesList) {
+    gamesList.innerHTML = games.map((project) => otherMarkup(project)).join("");
   }
 
   if (otherList) {

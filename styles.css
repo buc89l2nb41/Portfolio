@@ -711,6 +711,13 @@ img {
   border-radius: 0.15rem;
 }
 
+.project-badge-host {
+  color: var(--ink);
+  border-color: rgba(16, 26, 21, 0.2);
+  background: rgba(16, 26, 21, 0.06);
+  letter-spacing: 0.04em;
+}
+
 .other-links {
   display: flex;
   flex-wrap: wrap;

@@ -1,6 +1,6 @@
 /* 프로젝트 목록 — 설명은 쉬운 말 우선.
- * tier: "featured" | "services" | "other"
- * services = AI API로 만들어 배포·실행 가능한 웹 서비스
+ * tier: "featured" | "services" | "games" | "other"
+ * host: 배포처 (Vercel, Render 등) — services/games에 표시
  */
 window.projects = [
   {
@@ -85,7 +85,8 @@ window.projects = [
     tier: "services",
     title: "TranslationChat",
     summary:
-      "여러 언어로 채팅하면 AI가 뜻을 해석·번역해 주는 웹 서비스. AI API를 붙여 서버에 올려 두었고, 링크만 있으면 바로 열어볼 수 있습니다",
+      "여러 언어로 채팅하면 AI가 뜻을 해석·번역해 주는 웹 서비스. AI API를 붙여 브라우저에서 바로 쓸 수 있게 만들었습니다",
+    host: "Render",
     stack: ["JavaScript", "AI", "Fastify"],
     repo: "https://github.com/buc89l2nb41/TranslationChat",
     demo: "https://translationchat.onrender.com",
@@ -97,6 +98,7 @@ window.projects = [
     title: "AI Playlist Creator",
     summary:
       "원하는 분위기를 말하면 AI가 곡 목록(플레이리스트)을 짜 주는 웹 서비스. Agent API를 붙여 배포까지 해 본 초기 작품",
+    host: "Vercel",
     stack: ["JavaScript", "AI"],
     repo: "https://github.com/buc89l2nb41/AiPlaylistCreator",
     demo: "https://ai-playlist-creator-eight.vercel.app",
@@ -108,11 +110,40 @@ window.projects = [
     title: "PersonaChat",
     summary:
       "정해 둔 성격(페르소나)으로 대화하는 채팅 웹앱과 서버. AI API로 캐릭터처럼 말하게 해 배포한 서비스",
+    host: "Vercel",
     stack: ["TypeScript", "AI"],
     repo: "https://github.com/buc89l2nb41/PersonaChat",
     demo: "https://persona-chat-gamma.vercel.app",
     youtube: null,
     images: ["./assets/mock/persona-01.svg"],
+  },
+  {
+    tier: "games",
+    title: "GrowRoll",
+    summary:
+      "굴려 다니며 물건을 모아 커지는(괴혼 비슷한) 웹 3D 게임. 브라우저에서 바로 플레이할 수 있습니다. Trellis 메시를 썼고, 면이 많아 성능이 나빠져 이후 Low Poly Cultivar로 이어짐",
+    host: "Vercel",
+    stack: ["TypeScript", "Web"],
+    repo: "https://github.com/buc89l2nb41/GrowRoll",
+    demo: "https://grow-roll-client.vercel.app",
+    youtube: null,
+    images: [
+      "./assets/growroll/01.png",
+      "./assets/growroll/02.png",
+      "./assets/growroll/03.png",
+    ],
+  },
+  {
+    tier: "games",
+    title: "GGPO Webgame",
+    summary:
+      "웹에서 바로 플레이해 볼 수 있는 격투 프로토타입. 지연을 줄이는 넷코드(GGPO) 느낌이 궁금해서 만들어 봤고, 라이브러리를 깊게 이해한 전문 구현이라기보다 관심·실험에 가깝습니다",
+    host: "Vercel",
+    stack: ["TypeScript", "Game"],
+    repo: "https://github.com/buc89l2nb41/GGPO_Webgame",
+    demo: "https://ggpo-webgame.vercel.app",
+    youtube: null,
+    images: ["./assets/mock/ggpo-01.svg"],
   },
   {
     tier: "other",
@@ -125,34 +156,6 @@ window.projects = [
     demo: null,
     youtube: null,
     images: ["./assets/mock/model-01.svg"],
-  },
-  {
-    tier: "other",
-    badge: "프로토타입",
-    title: "GrowRoll",
-    summary:
-      "굴려 다니며 물건을 모아 커지는(괴혼 비슷한) 웹 3D 프로토타입. Trellis로 만든 메시를 넣었고, 면이 많아 성능이 나빠져 이후 Low Poly Cultivar로 이어짐",
-    stack: ["TypeScript", "Web"],
-    repo: "https://github.com/buc89l2nb41/GrowRoll",
-    demo: "https://grow-roll-client.vercel.app",
-    youtube: null,
-    images: [
-      "./assets/growroll/01.png",
-      "./assets/growroll/02.png",
-      "./assets/growroll/03.png",
-    ],
-  },
-  {
-    tier: "other",
-    badge: "프로토타입",
-    title: "GGPO Webgame",
-    summary:
-      "웹에서 돌려 본 격투 게임 프로토타입. 지연을 줄이는 넷코드(GGPO) 느낌이 궁금해서 만들어 봤고, 라이브러리를 깊게 이해한 전문 구현이라기보다 관심·실험에 가깝습니다",
-    stack: ["TypeScript", "Game"],
-    repo: "https://github.com/buc89l2nb41/GGPO_Webgame",
-    demo: "https://ggpo-webgame.vercel.app",
-    youtube: null,
-    images: ["./assets/mock/ggpo-01.svg"],
   },
   {
     tier: "other",

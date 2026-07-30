@@ -1,6 +1,7 @@
 /* 프로젝트 목록 — 설명은 쉬운 말 우선.
  * tier: "featured" | "services" | "games" | "other"
- * host: 배포처 (Vercel, Render 등) — services/games에 표시
+ * host: 프론트/사이트 배포처 (Vercel, Render 등)
+ * server: 백엔드·서버 구성 (없으면 짧게 명시)
  */
 window.projects = [
   {
@@ -87,6 +88,7 @@ window.projects = [
     summary:
       "여러 언어로 채팅하면 AI가 뜻을 해석·번역해 주는 웹 서비스. AI API를 붙여 브라우저에서 바로 쓸 수 있게 만들었습니다",
     host: "Render",
+    server: "Fastify",
     stack: ["JavaScript", "AI", "Fastify"],
     repo: "https://github.com/buc89l2nb41/TranslationChat",
     demo: "https://translationchat.onrender.com",
@@ -99,6 +101,7 @@ window.projects = [
     summary:
       "원하는 분위기를 말하면 AI가 곡 목록(플레이리스트)을 짜 주는 웹 서비스. Agent API를 붙여 배포까지 해 본 초기 작품",
     host: "Vercel",
+    server: "자체 서버 없음 · 외부 AI API",
     stack: ["JavaScript", "AI"],
     repo: "https://github.com/buc89l2nb41/AiPlaylistCreator",
     demo: "https://ai-playlist-creator-eight.vercel.app",
@@ -111,7 +114,8 @@ window.projects = [
     summary:
       "정해 둔 성격(페르소나)으로 대화하는 채팅 웹앱과 서버. AI API로 캐릭터처럼 말하게 해 배포한 서비스",
     host: "Vercel",
-    stack: ["TypeScript", "AI"],
+    server: "Bun · Hono (별도 서버)",
+    stack: ["TypeScript", "AI", "Bun", "Hono"],
     repo: "https://github.com/buc89l2nb41/PersonaChat",
     demo: "https://persona-chat-gamma.vercel.app",
     youtube: null,
@@ -123,6 +127,7 @@ window.projects = [
     summary:
       "굴려 다니며 물건을 모아 커지는(괴혼 비슷한) 웹 3D 게임. 브라우저에서 바로 플레이할 수 있습니다. Trellis 메시를 썼고, 면이 많아 성능이 나빠져 이후 Low Poly Cultivar로 이어짐",
     host: "Vercel",
+    server: "프론트만 (멀티는 선택 WebSocket)",
     stack: ["TypeScript", "Web"],
     repo: "https://github.com/buc89l2nb41/GrowRoll",
     demo: "https://grow-roll-client.vercel.app",
@@ -139,7 +144,8 @@ window.projects = [
     summary:
       "웹에서 바로 플레이해 볼 수 있는 격투 프로토타입. 지연을 줄이는 넷코드(GGPO) 느낌이 궁금해서 만들어 봤고, 라이브러리를 깊게 이해한 전문 구현이라기보다 관심·실험에 가깝습니다",
     host: "Vercel",
-    stack: ["TypeScript", "Game"],
+    server: "자체 서버 없음 · WebRTC P2P",
+    stack: ["TypeScript", "Game", "WebRTC"],
     repo: "https://github.com/buc89l2nb41/GGPO_Webgame",
     demo: "https://ggpo-webgame.vercel.app",
     youtube: null,

@@ -200,6 +200,11 @@
         `<span class="project-badge project-badge-host">${escapeHtml(project.host)}</span>`,
       );
     }
+    if (project.server) {
+      badges.push(
+        `<span class="project-badge project-badge-server">${escapeHtml(project.server)}</span>`,
+      );
+    }
     if (project.badge) {
       badges.push(
         `<span class="project-badge">${escapeHtml(project.badge)}</span>`,

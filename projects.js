@@ -6,6 +6,19 @@
 window.projects = [
   {
     tier: "featured",
+    title: "Prompt Editor",
+    summary:
+      "언리얼 에디터 Tools 메뉴에 붙는 프롬프트 패널. 한 줄과 그림을 보내면, AI가 그 에디터의 도구만 불러 뷰포트에 놓음",
+    detail:
+      "특정 게임을 만든 작업이 아닙니다. UE 5.4 에디터 전용 플러그인이고, 메뉴 이름은 Tools → PromptEditor입니다. 패널에서 보낸 문장과 붙인 그림은 옆에서 도는 로컬 프로그램이 Cursor API로 읽고, AI는 그 에디터가 열어 둔 손만 호출합니다. 맵, 액터, 빛, 머티리얼, 파티클, 카메라를 고칩니다. Cursor 앱 채팅으로 멀리서 조종하지 않습니다.\n\n모델은 패널 드롭다운에서 고릅니다. 그림이나 3D를 씬에 넣기 전에는 사람이 한 번 보고 넘어가게 끊어 두었습니다. 이펙트는 레퍼런스 그림과 뷰포트 스크린샷을 비교하는 쪽으로 맞추고 있고, 브라우저에서 여는 데모는 없습니다.",
+    stack: ["Unreal Engine 5.4", "C++", "Python", "MCP"],
+    repo: "https://github.com/buc89l2nb41/UnrealPromptEditor",
+    demo: null,
+    youtube: null,
+    images: ["./assets/mock/prompteditor-01.svg"],
+  },
+  {
+    tier: "featured",
     title: "FBNeo Agent",
     summary:
       "옛날 아케이드 게임을 돌리는 프로그램(에뮬레이터)을, AI가 화면을 보고 조작할 수 있게 개조한 기반 작업",

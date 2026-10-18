@@ -11,6 +11,7 @@
 
 | Project | Stack | Demo | YouTube | Repo |
 | --- | --- | --- | --- | --- |
+| **Prompt Editor** | Unreal Engine 5.4, C++, Python, MCP | — | — | [GitHub](https://github.com/buc89l2nb41/UnrealPromptEditor) |
 | **GrowRoll** | TypeScript, Web | [Live](https://grow-roll-client.vercel.app) | — | [GitHub](https://github.com/buc89l2nb41/GrowRoll) |
 | **TranslationChat** | JavaScript, AI, Fastify | [Live](https://translationchat.onrender.com) | — | [GitHub](https://github.com/buc89l2nb41/TranslationChat) |
 | **Godot NNUE Prompt Chess** | Godot, GDScript, AI | — | — | [GitHub](https://github.com/buc89l2nb41/GodotNnuePromptChess) |

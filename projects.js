@@ -14,7 +14,7 @@ window.projects = [
     stack: ["Unreal Engine 5.4", "C++", "Python", "MCP"],
     repo: "https://github.com/buc89l2nb41/UnrealPromptEditor",
     demo: null,
-    youtube: null,
+    youtube: "https://www.youtube.com/watch?v=ukDAZP5qFCc",
     images: ["./assets/mock/prompteditor-01.svg"],
   },
   {
@@ -38,7 +38,7 @@ window.projects = [
     tier: "featured",
     title: "Godot NNUE Prompt Chess",
     summary:
-      "말로 플레이 스타일을 지시하는 AI 체스. 엉뚱한 수는 체스 엔진이 고른 후보만 쓰게 해서 막음",
+      "말로 플레이 스타일을 지시하는 AI 체스. 엉뚱한 수는 체스 엔진이 고른 후보만 쓰게 해서 막고, NNUE 평가도 접목해 봄",
     detail:
       "Godot으로 만든 체스에, 채팅처럼 프롬프트로 ‘공격적으로’ ‘오프닝은 이렇게’ 같은 지시를 주는 AI 모드를 붙였습니다. ChatGPT만 믿으면 존재하지 않는 수나 불법 수를 둘 수 있어서, AI가 고른 수를 보드에 바로 올리지 않습니다.\n\n먼저 Stockfish(강한 체스 엔진)가 지금 장면에서 둘 만한 후보 수 여러 개를 뽑고, AI는 그 목록 안에서만 고르거나 코칭 설명을 합니다. (오프닝을 지정한 경우에는 정해 둔 오프닝 수순을 먼저 쓰기도 하지만, 그때도 규칙상 둘 수 있는 수인지는 게임이 한 번 더 검사합니다.) 후보 밖이거나 규칙에 안 맞는 수면 엔진 후보·최선의 수로 바꿔 둡니다. 사람 말(프롬프트)은 스타일·설명에 쓰고, 실제로 놓는 수는 엔진·규칙으로 막는 구조입니다.",
     stack: ["Godot", "GDScript", "Stockfish", "AI"],
@@ -61,7 +61,7 @@ window.projects = [
     stack: ["Python", "AI", "Cursor API"],
     repo: "https://github.com/buc89l2nb41/PromptAssetForge",
     demo: null,
-    youtube: null,
+    youtube: "https://www.youtube.com/watch?v=a6JBpMLviHk",
     images: ["./assets/mock/forge-01.svg"],
   },
   {
@@ -74,7 +74,7 @@ window.projects = [
     stack: ["TypeScript", "Three.js", "gltfpack"],
     repo: "https://github.com/buc89l2nb41/LowPolyCultivar",
     demo: null,
-    youtube: null,
+    youtube: "https://www.youtube.com/watch?v=5jGktxpn7FM",
     images: [
       "./assets/lowpoly/01-home.png",
       "./assets/lowpoly/03-after-generate.png",
@@ -112,7 +112,7 @@ window.projects = [
     tier: "services",
     title: "AI Playlist Creator",
     summary:
-      "원하는 분위기를 말하면 AI가 곡 목록(플레이리스트)을 짜 주는 웹 서비스. Agent API를 붙여 배포까지 해 본 초기 작품",
+      "원하는 분위기를 말하면 AI가 곡 목록(플레이리스트)을 짜 주는 웹 서비스. Agent API는 직접 붙어 있지 않고, 붙이려면 제미나이 키가 필요합니다.",
     host: "Vercel",
     server: "자체 서버 없음 · 외부 AI API",
     stack: ["JavaScript", "AI"],
@@ -125,7 +125,7 @@ window.projects = [
     tier: "services",
     title: "PersonaChat",
     summary:
-      "정해 둔 성격(페르소나)으로 대화하는 채팅 웹앱과 서버. AI API로 캐릭터처럼 말하게 해 배포한 서비스",
+      "정해 둔 성격(페르소나)으로 대화하는 채팅입니다. 클라이언트는 브라우저에서 여는 웹앱이고, 서버는 그 대화를 맡습니다.",
     host: "Vercel",
     server: "Bun · Hono (별도 서버)",
     stack: ["TypeScript", "AI", "Bun", "Hono"],
@@ -133,6 +133,50 @@ window.projects = [
     demo: "https://persona-chat-gamma.vercel.app",
     youtube: null,
     images: ["./assets/mock/persona-01.svg"],
+  },
+  {
+    tier: "services",
+    title: "PersonaChat Server",
+    summary: "PersonaChat의 대화 서버입니다.",
+    stack: ["TypeScript"],
+    repo: "https://github.com/buc89l2nb41/PersonaChatServer",
+    demo: null,
+    youtube: null,
+    images: [],
+  },
+  {
+    tier: "services",
+    title: "Pocketbase Board",
+    summary: "게시판에 가까운 웹입니다.",
+    host: "Vercel",
+    server: "PocketBase",
+    stack: ["TypeScript", "PocketBase"],
+    repo: "https://github.com/buc89l2nb41/PocketbaseBoard",
+    demo: "https://pocketbase-board.vercel.app",
+    youtube: null,
+    images: [],
+  },
+  {
+    tier: "other",
+    title: "Apple Game Solver",
+    summary:
+      "apple.oshizi.com 사과게임에서 합이 10인 칸을 찾아 자동으로 지웁니다. Playwright를 처음 써 본 작업입니다.",
+    stack: ["JavaScript", "Playwright"],
+    repo: "https://github.com/buc89l2nb41/AppleGameSolver",
+    demo: null,
+    youtube: null,
+    images: [],
+  },
+  {
+    tier: "other",
+    title: "Count The Fingers Solver",
+    summary:
+      "countthefingers.com에 나오는 퀴즈를 자동으로 풉니다. Playwright를 처음 써 본 작업입니다.",
+    stack: ["JavaScript", "Playwright"],
+    repo: "https://github.com/buc89l2nb41/CountTheFingerSolver",
+    demo: null,
+    youtube: null,
+    images: [],
   },
   {
     tier: "games",
@@ -155,7 +199,7 @@ window.projects = [
     tier: "games",
     title: "GGPO Webgame",
     summary:
-      "AI로 뽑은 스프라이트(AetherForge 등)를 격투 게임에 넣어 보기 위해 만든 웹 프로토타입에 가깝습니다. 브라우저에서 바로 플레이할 수 있고, 만들다 보니 지연을 줄이는 넷코드(GGPO) 느낌도 궁금해서 붙여 봤지만, 넷코드를 깊게 이해한 전문 구현이라기보다 스프라이트·플레이 실험 쪽이 본래 목적입니다",
+      "Stable Diffusion으로 같은 캐릭터의 포즈별 스프라이트를 뽑으려던 DiffusionGen은, 프레임마다 얼굴과 옷이 바뀌고 포즈도 잘 따르지 않아 쓰지 못했습니다. 그래서 스프라이트를 뽑아 주는 사이트 AetherForge에서 그림을 뽑아, 격투 게임에 넣어 본 웹 프로토타입에 가깝습니다. 브라우저에서 바로 플레이할 수 있고, 만들다 보니 지연을 줄이는 넷코드(GGPO) 느낌도 궁금해서 붙여 봤지만, 넷코드를 깊게 이해한 전문 구현이라기보다 스프라이트·플레이 실험 쪽이 본래 목적입니다",
     host: "Vercel",
     server: "자체 서버 없음 · WebRTC P2P",
     stack: ["TypeScript", "Game", "WebRTC"],

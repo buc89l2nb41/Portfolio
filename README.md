@@ -20,8 +20,8 @@
 | **PersonaChat Server** | TypeScript, Backend | — | — | [GitHub](https://github.com/buc89l2nb41/PersonaChatServer) |
 | **Pocketbase Board** | TypeScript, PocketBase | [Live](https://pocketbase-board.vercel.app) | — | [GitHub](https://github.com/buc89l2nb41/PocketbaseBoard) |
 | **AI Playlist Creator** | JavaScript, AI | [Live](https://ai-playlist-creator-eight.vercel.app) | — | [GitHub](https://github.com/buc89l2nb41/AiPlaylistCreator) |
-| **Prompt Asset Forge** | Python, AI | — | — | [GitHub](https://github.com/buc89l2nb41/PromptAssetForge) |
-| **Low Poly Cultivar** | TypeScript, 3D | — | — | [GitHub](https://github.com/buc89l2nb41/LowPolyCultivar) |
+| **Prompt Asset Forge** | Python, AI | — | [YouTube](https://youtu.be/a6JBpMLviHk) | [GitHub](https://github.com/buc89l2nb41/PromptAssetForge) |
+| **Low Poly Cultivar** | TypeScript, 3D | — | [YouTube](https://youtu.be/5jGktxpn7FM) | [GitHub](https://github.com/buc89l2nb41/LowPolyCultivar) |
 
 > YouTube 칸은 영상 업로드 후 링크를 채울 예정입니다.
 

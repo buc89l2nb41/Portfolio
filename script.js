@@ -28,10 +28,6 @@
     const items = [];
     const youtubeId = getYouTubeId(project.youtube);
 
-    (project.images || []).forEach((src) => {
-      items.push({ type: "image", src, thumb: src });
-    });
-
     if (youtubeId) {
       items.push({
         type: "youtube",
@@ -39,6 +35,10 @@
         thumb: `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`,
       });
     }
+
+    (project.images || []).forEach((src) => {
+      items.push({ type: "image", src, thumb: src });
+    });
 
     return items;
   }

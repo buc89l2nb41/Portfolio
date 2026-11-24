@@ -58,6 +58,8 @@ iframe {
 
 #sky-canvas {
   z-index: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
 }
@@ -261,9 +263,10 @@ iframe {
 
 .sky-side a {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   justify-content: flex-start;
-  gap: 0.45rem;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.45rem;
   padding: 0.42rem 0.5rem;
   border-radius: 0.35rem;
   color: var(--ink-soft);
@@ -276,7 +279,8 @@ iframe {
 }
 
 .sky-side a span {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .sky-side a.is-play::before {
@@ -291,6 +295,7 @@ iframe {
 
 .sky-side a em {
   flex: none;
+  margin-top: 0.12rem;
   color: #1a1408;
   background: var(--gold);
   border-radius: 999px;
@@ -348,6 +353,13 @@ iframe {
   overflow-y: auto;
   pointer-events: auto;
   overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.sky-stage.is-reading::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .sky-stage {
@@ -402,8 +414,8 @@ iframe {
 }
 
 .sky-others h3 {
-  flex: 1 1 auto;
-  min-width: 0;
+  flex: 1 1 8rem;
+  min-width: min(100%, 7rem);
   margin: 0;
   font-family: var(--font-display);
   font-weight: 400;
@@ -415,6 +427,10 @@ iframe {
 .sky-others p {
   margin: 0.45rem 0 0;
   max-width: 40rem;
+}
+
+.sky-others li > p + p {
+  margin-top: 0.75rem;
 }
 
 .sky-index {
@@ -437,14 +453,14 @@ iframe {
 
 .sky-title-row {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem 1.1rem;
 }
 
 .sky-title-row h2 {
-  flex: 1 1 auto;
-  min-width: 0;
+  flex: 1 1 10rem;
+  min-width: min(100%, 8rem);
   margin: 0;
 }
 
@@ -453,6 +469,7 @@ iframe {
   flex: 0 0 auto;
   flex-wrap: wrap;
   align-items: center;
+  margin-left: auto;
   gap: 0.7rem 0.9rem;
 }
 
@@ -473,13 +490,36 @@ iframe {
   color: var(--ink-soft);
 }
 
+.sky-detail > p + p:not(.sky-note),
+.sky-copy > p + p:not(.sky-note) {
+  margin-top: 0.9rem;
+}
+
+.sky-ref {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--gold);
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  cursor: pointer;
+}
+
+.sky-ref:hover {
+  color: #fff8ea;
+}
+
 .sky-lead {
   margin-top: 1rem !important;
   font-size: 1.05rem;
 }
 
 .sky-hint {
-  margin-top: 2rem !important;
+  margin-top: 1.25rem !important;
   color: var(--gold) !important;
   letter-spacing: 0.02em;
   font-size: 0.78rem;

@@ -4,26 +4,27 @@
 
   // 별의 좌표와 차례. 순서만 바꾸면 선도 같이 바뀐다.
   const dipper = [
-    [90, 8],
     [76, 14],
     [84, 26],
     [68, 22],
     [58, 34],
+    [37, 57],
+    [26, 69],
     [16, 80],
-    [16, 88],
   ];
 
   const starTitles = [
-    "Prompt Editor",
     "GrowRoll",
     "Prompt Asset Forge",
     "Low Poly Cultivar",
     "GGPO Webgame",
-    "Godot NNUE Prompt Chess",
+    "SpriteGen",
+    "Prompt Editor",
     "기타",
   ];
 
   const otherTitles = [
+    "Godot NNUE Prompt Chess",
     "Apple Game Solver",
     "Count The Fingers Solver",
     "AI Playlist Creator",
@@ -51,7 +52,11 @@
     if (!project || !project.repo) return null;
     return {
       title,
-      text: project.summary.replace(/\s+/g, " ").trim(),
+      text: project.summary
+        .split(/\n\s*\n/)
+        .map((part) => part.replace(/\s+/g, " ").trim())
+        .filter(Boolean)
+        .join("\n"),
       repo: project.repo,
       demo: project.demo,
       game: project.tier === "games",
@@ -70,7 +75,7 @@
         const items = otherTitles.map(itemOf).filter(Boolean);
         return {
           title,
-          text: "바이브코딩 연습용으로 작성해 본 코드 모음입니다.",
+          text: "게임 묶음에 넣지 않은 작업입니다. 체스는 엔진이 수를 막는 게임이고, 나머지는 바이브코딩으로 감을 잡으며 만든 코드입니다.",
           projects: otherTitles,
           items,
           demo: null,
@@ -99,6 +104,30 @@
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
+  }
+
+  function escapeRegExp(value) {
+    return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function linkedText(text, currentTitle) {
+    const targets = [...starTitles.filter((title) => title !== "기타"), ...otherTitles]
+      .filter((title) => title && title !== currentTitle)
+      .sort((a, b) => b.length - a.length);
+    if (!targets.length) return escapeHtml(text);
+    const pattern = new RegExp(targets.map(escapeRegExp).join("|"), "g");
+    let html = "";
+    let last = 0;
+    for (const match of text.matchAll(pattern)) {
+      html += escapeHtml(text.slice(last, match.index));
+      const title = match[0];
+      const star = starTitles.indexOf(title);
+      const dest = star >= 0 ? star : starTitles.indexOf("기타");
+      html += `<button type="button" class="sky-ref" data-star="${dest}">${escapeHtml(title)}</button>`;
+      last = match.index + title.length;
+    }
+    html += escapeHtml(text.slice(last));
+    return html;
   }
 
   function youtubeId(url) {
@@ -153,16 +182,15 @@
         images.push({ type: "image", src, label: project.title });
       });
     });
-    return videos.concat(images);
+    return videos.length ? videos : images;
   }
 
   function visualMarkup(star) {
     const frames = mediaOf(star);
     if (!frames.length) return "";
-    const hasVideo = frames[0].type === "video";
-    const thumbs = frames
-      .map((frame, index) => ({ frame, index }))
-      .filter((item) => !(hasVideo && item.frame.type === "video"));
+    const thumbs = frames[0].type === "image" && frames.length > 1
+      ? frames.map((frame, index) => ({ frame, index }))
+      : [];
     const strip = thumbs.length
       ? `<div class="sky-thumbs"${thumbs.length > 3 ? ' data-scroll="1"' : ""}><div class="sky-thumbs-track">${thumbs
           .map(
@@ -221,7 +249,14 @@
       watchQuality(frameEl.querySelector("iframe"));
       return;
     }
-    if (frameEl.querySelector("iframe")) frameEl.innerHTML = frameMarkup(frame);
+    if (frameEl.querySelector("iframe")) {
+      frameEl.innerHTML = frameMarkup(frame);
+      return;
+    }
+    const image = frameEl.querySelector("img");
+    if (frame.type !== "video" && (!image || image.getAttribute("src") !== frame.src)) {
+      frameEl.innerHTML = frameMarkup(frame);
+    }
   }
 
   function linkRow(item) {
@@ -235,6 +270,14 @@
     return `<div class="sky-title-links">${launch}<div class="sky-links">${quiet}</div></div>`;
   }
 
+  function textParagraphs(text, title) {
+    return text
+      .split("\n")
+      .filter((part) => part.trim())
+      .map((part) => `<p>${linkedText(part, title)}</p>`)
+      .join("");
+  }
+
   function stageMarkup(star, index) {
     if (star.items) {
       const rows = star.items
@@ -245,7 +288,7 @@
                 <h3>${escapeHtml(item.title)}</h3>
                 ${linkRow(item)}
               </div>
-              <p>${escapeHtml(item.text)}</p>
+              ${textParagraphs(item.text, item.title)}
             </li>`,
         )
         .join("");
@@ -264,10 +307,12 @@
     }
     const links = linkRow({ ...star, repo: findProject(star.projects[0])?.repo });
     const heading = `<p class="sky-index">${String(index + 1).padStart(2, "0")}</p><div class="sky-title-row"><h2>${escapeHtml(star.title)}</h2>${links}</div>`;
-    const detail = `<p>${escapeHtml(star.text)}</p>`;
+    const names = findProject(star.projects[0])?.stack || [];
+    const stack = names.length ? `<p class="sky-note">사용 기술  ${escapeHtml(names.join(" · "))}</p>` : "";
+    const detail = `${textParagraphs(star.text, star.title)}${stack}`;
     const visual = visualMarkup(star);
     const copy = visual
-      ? `<div class="sky-copy">${heading}</div>${visual}<div class="sky-detail">${detail}</div>`
+      ? `<div class="sky-copy">${heading}</div><div class="sky-detail">${detail}</div>${visual}`
       : `<div class="sky-copy">${heading}${detail}</div>`;
     return `
       <section class="sky-stage" id="star-${index + 1}" data-star="${index}">
@@ -283,8 +328,7 @@
       <div class="sky-stage-inner">
         <div class="sky-copy">
           <p class="sky-index">시작</p>
-          <h1>게임·엔진 런타임에 Agent가 붙을 수 있게, 관측·제어·검증 도구를 만듭니다</h1>
-          <p class="sky-lead">LLM을 그대로 믿기보다, 측정·게이트·비교로 막는 쪽의 실험과 툴을 모아 두었습니다.</p>
+          <h1>AI에게 에디터 작업과 에셋 제작을 맡기는 도구를 만듭니다</h1>
           <p class="sky-hint">별을 누르면 그 작업으로 바로 갑니다</p>
         </div>
       </div>
@@ -345,13 +389,13 @@
   glow.style.strokeDasharray = String(length);
 
   const nameLabels = [
-    { y: 8 },
     { y: 14 },
     { y: 30 },
     { y: 22 },
     { y: 36.5 },
+    { y: 52, anchor: "start" },
+    { y: 66, anchor: "start" },
     { y: 80, anchor: "start" },
-    { y: 88, anchor: "start" },
   ];
 
   points.forEach((point, index) => {
@@ -409,6 +453,17 @@
     image.src = image.dataset.fallback;
   }, true);
 
+  function selectFrame(visual, index) {
+    const frames = JSON.parse(visual.dataset.frames || "[]");
+    const frame = frames[index];
+    if (!frame) return;
+    visual.querySelectorAll(".sky-thumbs button").forEach((button) => {
+      button.classList.toggle("is-active", Number(button.dataset.frame) === index);
+    });
+    const stage = visual.closest(".sky-stage");
+    syncStageVideo(stage, stage.classList.contains("is-reading"));
+  }
+
   main.addEventListener("click", (event) => {
     const play = event.target.closest(".sky-play");
     if (play) {
@@ -418,21 +473,10 @@
       return;
     }
     const thumb = event.target.closest(".sky-thumbs button");
-    if (!thumb) return;
+    if (!thumb || thumb.classList.contains("is-active")) return;
     const visual = thumb.closest(".sky-visual");
-    const frames = JSON.parse(visual.dataset.frames);
-    const frameEl = visual.querySelector(".sky-frame");
-    const restoreVideo = thumb.classList.contains("is-active") && frames[0]?.type === "video";
-    if (restoreVideo) {
-      thumb.classList.remove("is-active");
-      frameEl.innerHTML = frameMarkup(frames[0]);
-    } else {
-      frameEl.innerHTML = frameMarkup(frames[Number(thumb.dataset.frame)]);
-      visual.querySelectorAll(".sky-thumbs button").forEach((button) => {
-        button.classList.toggle("is-active", button === thumb);
-      });
-    }
-    syncStageVideo(visual.closest(".sky-stage"), visual.closest(".sky-stage").classList.contains("is-reading"));
+    visual.dataset.pauseUntil = String(performance.now() + 6400);
+    selectFrame(visual, Number(thumb.dataset.frame));
   });
 
   const stops = [...main.querySelectorAll(".sky-stage")];
@@ -454,13 +498,24 @@
   track.style.setProperty("--sky-steps", String(stops.length));
   main.appendChild(track);
 
+  function openStar(starId) {
+    const stageIndex = stops.findIndex((stage) => stage.dataset.star === String(starId));
+    if (stageIndex < 0) return;
+    flyToIndex(stageIndex);
+  }
+
   side.addEventListener("click", (event) => {
     const link = event.target.closest("a");
     if (!link || link.dataset.star == null) return;
     event.preventDefault();
-    const stageIndex = stops.findIndex((stage) => stage.dataset.star === link.dataset.star);
-    if (stageIndex < 0) return;
-    flyToIndex(stageIndex);
+    openStar(link.dataset.star);
+  });
+
+  main.addEventListener("click", (event) => {
+    const ref = event.target.closest(".sky-ref");
+    if (!ref) return;
+    event.preventDefault();
+    openStar(ref.dataset.star);
   });
 
   figureStars.addEventListener("click", (event) => {
@@ -912,9 +967,12 @@
 
   function startThumbMarquee(stage) {
     stopThumbMarquee();
+    const visual = stage.querySelector(".sky-visual");
+    const frames = visual ? JSON.parse(visual.dataset.frames || "[]") : [];
+    const slides = frames.length > 1 && frames.every((frame) => frame.type === "image");
     const strip = stage.querySelector(".sky-thumbs[data-scroll]");
-    if (!strip) return;
-    if (!strip.dataset.bound) {
+    if (!strip && !slides) return;
+    if (strip && !strip.dataset.bound) {
       strip.dataset.bound = "1";
       let drag = null;
       const pause = () => {
@@ -975,13 +1033,21 @@
       }, true);
     }
     thumbTimer = setInterval(() => {
-      if (strip.classList.contains("is-dragging")) return;
-      if (performance.now() < Number(strip.dataset.pauseUntil || 0)) return;
-      const metrics = thumbMetrics(strip);
-      if (!metrics || metrics.max <= 0) return;
-      const index = Number(strip.dataset.index || 0);
-      placeThumbs(strip, index >= metrics.max ? 0 : index + 1, true);
-    }, 2000);
+      if (strip && !strip.classList.contains("is-dragging") && performance.now() >= Number(strip.dataset.pauseUntil || 0)) {
+        const metrics = thumbMetrics(strip);
+        if (metrics && metrics.max > 0) {
+          const index = Number(strip.dataset.index || 0);
+          placeThumbs(strip, index >= metrics.max ? 0 : index + 1, true);
+        }
+      }
+      if (!slides) return;
+      if (performance.now() < Number(visual.dataset.pauseUntil || 0)) return;
+      const buttons = [...visual.querySelectorAll(".sky-thumbs button")];
+      if (buttons.length < 2) return;
+      const current = Math.max(0, buttons.findIndex((button) => button.classList.contains("is-active")));
+      const next = buttons[(current + 1) % buttons.length];
+      selectFrame(visual, Number(next.dataset.frame));
+    }, 3200);
   }
 
   function markReading(index) {
@@ -1174,14 +1240,14 @@
   }));
 
   function paint(now) {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width = Math.max(canvas.clientWidth || window.innerWidth, 1);
+    const height = Math.max(canvas.clientHeight || window.innerHeight, 1);
     const ratio = window.devicePixelRatio || 1;
-    if (canvas.width !== Math.floor(width * ratio) || canvas.height !== Math.floor(height * ratio)) {
-      canvas.width = Math.floor(width * ratio);
-      canvas.height = Math.floor(height * ratio);
-      canvas.style.width = width + "px";
-      canvas.style.height = height + "px";
+    const bitmapW = Math.floor(width * ratio);
+    const bitmapH = Math.floor(height * ratio);
+    if (canvas.width !== bitmapW || canvas.height !== bitmapH) {
+      canvas.width = bitmapW;
+      canvas.height = bitmapH;
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
     }
     context.clearRect(0, 0, width, height);
@@ -1202,5 +1268,10 @@
       requestAnimationFrame(paint);
     }
   }
+  function paintNow() {
+    paint(performance.now());
+  }
+  window.addEventListener("resize", paintNow);
+  if (window.visualViewport) window.visualViewport.addEventListener("resize", paintNow);
   requestAnimationFrame(paint);
 })();

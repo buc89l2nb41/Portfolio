@@ -8,14 +8,20 @@ window.projects = [
     tier: "featured",
     title: "Prompt Editor",
     summary:
-      "언리얼 에디터 Tools 메뉴에 붙는 프롬프트 패널. 한 줄과 그림을 보내면, AI가 그 에디터의 도구만 불러 뷰포트에 놓음",
+      "언리얼 에디터 5.4의 Tools 메뉴에 붙는 프롬프트 패널로, 문장과 그림을 보내면 로컬 Python 프로그램이 Cursor API로 읽고 AI는 플러그인이 열어 둔 MCP 도구만 호출합니다.\n\n액터를 놓고 옮기거나 라이트와 머티리얼을 고치고, 나이아가라와 랜드스케이프, 카메라를 다루며, 플레이 중인 캐릭터를 움직이거나 블루프린트를 컴파일하기도 합니다.\n\n텍스처나 3D를 씬에 넣기 전에는 사람이 한 번 보고 넘어가게 끊어 두었습니다.",
     detail:
-      "특정 게임을 만든 작업이 아닙니다. UE 5.4 에디터 전용 플러그인이고, 메뉴 이름은 Tools → PromptEditor입니다. 패널에서 보낸 문장과 붙인 그림은 옆에서 도는 로컬 프로그램이 Cursor API로 읽고, AI는 그 에디터가 열어 둔 손만 호출합니다. 맵, 액터, 빛, 머티리얼, 파티클, 카메라를 고칩니다. Cursor 앱 채팅으로 멀리서 조종하지 않습니다.\n\n모델은 패널 드롭다운에서 고릅니다. 그림이나 3D를 씬에 넣기 전에는 사람이 한 번 보고 넘어가게 끊어 두었습니다. 이펙트는 레퍼런스 그림과 뷰포트 스크린샷을 비교하는 쪽으로 맞추고 있고, 브라우저에서 여는 데모는 없습니다.",
-    stack: ["Unreal Engine 5.4", "C++", "Python", "MCP"],
+      "특정 게임을 만든 작업이 아닙니다. UE 5.4 에디터 전용 플러그인이고, 메뉴 이름은 Tools → PromptEditor입니다. 패널은 Slate로 만들고, 보낸 문장과 붙인 그림은 옆에서 도는 Python(FastAPI) 프로그램이 Cursor API로 읽습니다. AI는 그 에디터가 루프백 MCP로 열어 둔 도구만 호출합니다. 액터, 라이트, 머티리얼, 나이아가라, 랜드스케이프, 카메라를 고치고, 플레이 중인 캐릭터를 움직이거나 블루프린트를 컴파일할 수도 있습니다. Cursor 앱 채팅으로 멀리서 조종하지 않습니다.\n\n모델은 패널 드롭다운에서 고릅니다. 텍스처나 Trellis로 뽑은 3D를 씬에 넣기 전에는 사람이 한 번 보고 넘어가게 끊어 두었습니다. 이펙트는 레퍼런스 그림과 뷰포트 스크린샷을 비교하는 쪽으로 맞추고 있고, 브라우저에서 여는 데모는 없습니다.",
+    stack: ["Unreal Engine 5.4", "C++", "Slate", "Python", "FastAPI", "MCP", "Cursor API", "Niagara", "Trellis"],
     repo: "https://github.com/buc89l2nb41/UnrealPromptEditor",
     demo: null,
     youtube: "https://www.youtube.com/watch?v=ukDAZP5qFCc",
-    images: ["./assets/mock/prompteditor-01.svg"],
+    images: [
+      "./assets/prompteditor/01.png",
+      "./assets/prompteditor/02.png",
+      "./assets/prompteditor/03.png",
+      "./assets/prompteditor/04.png",
+      "./assets/prompteditor/05.png",
+    ],
   },
   {
     tier: "featured",
@@ -38,7 +44,7 @@ window.projects = [
     tier: "featured",
     title: "Godot NNUE Prompt Chess",
     summary:
-      "말로 플레이 스타일을 지시하는 AI 체스. 엉뚱한 수는 체스 엔진이 고른 후보만 쓰게 해서 막고, NNUE 평가도 접목해 봄",
+      "말로 스타일을 지시하는 체스로, 공격적으로, 오프닝은 이렇게, 같은 말을 받으면 그 분위기에 맞는 수를 고릅니다.\n\n없는 수나 규칙에 어긋나는 수가 나오면 체스 엔진이 고른 후보 안의 수로 바꾸고, NNUE 평가도 접해 봤습니다.",
     detail:
       "Godot으로 만든 체스에, 채팅처럼 프롬프트로 ‘공격적으로’ ‘오프닝은 이렇게’ 같은 지시를 주는 AI 모드를 붙였습니다. ChatGPT만 믿으면 존재하지 않는 수나 불법 수를 둘 수 있어서, AI가 고른 수를 보드에 바로 올리지 않습니다.\n\n먼저 Stockfish(강한 체스 엔진)가 지금 장면에서 둘 만한 후보 수 여러 개를 뽑고, AI는 그 목록 안에서만 고르거나 코칭 설명을 합니다. (오프닝을 지정한 경우에는 정해 둔 오프닝 수순을 먼저 쓰기도 하지만, 그때도 규칙상 둘 수 있는 수인지는 게임이 한 번 더 검사합니다.) 후보 밖이거나 규칙에 안 맞는 수면 엔진 후보·최선의 수로 바꿔 둡니다. 사람 말(프롬프트)은 스타일·설명에 쓰고, 실제로 놓는 수는 엔진·규칙으로 막는 구조입니다.",
     stack: ["Godot", "GDScript", "Stockfish", "AI"],
@@ -55,7 +61,7 @@ window.projects = [
     tier: "featured",
     title: "Prompt Asset Forge",
     summary:
-      "GrowRoll에 넣을 정원 소품 3D를 대량으로 뽑기 위해 만든 배치 툴. 테마 한 줄 → 프롬프트 목록 → 이미지 → Trellis로 GLB까지",
+      "GrowRoll에 넣을 정원 소품을 한 줄 테마로 여러 개 뽑는 배치 도구로, 테마를 주면 프롬프트 목록과 그림을 만들고 로컬 Trellis로 3D 파일까지 넘깁니다.\n\n하나씩 만들면 느려서 한 번에 여러 개를 처리하게 했고, 면 수가 많아 무거워진 메시의 비교와 선택은 Low Poly Cultivar가 맡습니다.",
     detail:
       "GrowRoll은 굴려 모으는 게임에 도토리·화분·버섯 같은 정원 소품이 많이 필요합니다. 문서에는 티어별로 수십 개 에셋 체크리스트와, ‘이미지 프롬프트 → 그림 → Trellis로 3D → 게임에 GLB’ 흐름이 정리돼 있습니다. Trellis를 하나씩 돌리면 너무 느려서, 예전에 만든 플레이리스트 앱처럼 ‘한 번에 여러 개’가 필요했습니다.\n\nPrompt Asset Forge는 테마(예: 정원)를 넣으면 Cursor API로 프롬프트 목록과 레퍼런스 PNG를 만들고, 로컬 Trellis로 GLB를 일괄 생성하는 웹 도구입니다. GrowRoll용 컬렉션을 뽑는 데 쓰였고, Trellis 결과면 수가 너무 많아(대략 수만 면, 최소도 만 면대) 게임용으로는 무거웠습니다. 그 성능 문제는 이후 gltfpack 실험과 Low Poly Cultivar로 이어집니다.",
     stack: ["Python", "AI", "Cursor API"],
@@ -68,7 +74,7 @@ window.projects = [
     tier: "featured",
     title: "Low Poly Cultivar",
     summary:
-      "무거운 3D 모델을 여러 방식으로 가볍게 만든 뒤, 앞뒤좌우 그림이 얼마나 비슷한지 보고 자동으로 고르는 도구",
+      "무거운 3D 모델을 여러 설정으로 가볍게 만든 뒤, 원본과 앞뒤좌우 그림을 겹쳐 비슷하면서도 면이 적은 쪽을 고르거나 사람이 골라 받는 도구입니다.\n\nGrowRoll에 넣은 Trellis 메시가 너무 무거워, 눈으로만 비교하지 않으려고 만들었습니다.",
     detail:
       "AI로 3D 메시를 뽑는 Trellis를 GrowRoll(굴려 모으는 웹 게임)에 넣었더니, 면 수가 너무 많아서 게임이 버거웠습니다. gltfpack이라는 도구로 설정을 바꿔 가며 깎아 봤는데, 너무 깎으면 텍스처가 깨지기도 해서 ‘어떤 설정이 좋은지’를 눈으로 비교할 필요가 있었습니다. 그래서 여러 프리셋으로 한 번에 후보를 만들고, 원본과 전·후·좌·우 네 방향 스프라이트를 겹쳐 얼마나 비슷한지 점수로 본 뒤, 비슷하면서도 폴리곤이 적은 쪽을 고르거나 사람이 골라 받게 만들었습니다. 에셋 생성 파이프라인의 성능 문제를 ‘감으로 하나하나’가 아니라 비교·자동 선택 툴로 푼 사례입니다.",
     stack: ["TypeScript", "Three.js", "gltfpack"],
@@ -99,7 +105,7 @@ window.projects = [
     tier: "services",
     title: "TranslationChat",
     summary:
-      "여러 언어로 채팅하면 AI가 뜻을 해석·번역해 주는 웹 서비스. AI API를 붙여 브라우저에서 바로 쓸 수 있게 만들었습니다",
+      "여러 언어로 보낸 말을 뜻을 맞춰 번역해 주는 채팅으로, 브라우저에서 바로 열 수 있고 번역은 서버의 AI API가 맡습니다.",
     host: "Render",
     server: "Fastify",
     stack: ["JavaScript", "AI", "Fastify"],
@@ -112,7 +118,7 @@ window.projects = [
     tier: "services",
     title: "AI Playlist Creator",
     summary:
-      "원하는 분위기를 말하면 AI가 곡 목록(플레이리스트)을 짜 주는 웹 서비스. Agent API는 직접 붙어 있지 않고, 붙이려면 제미나이 키가 필요합니다.",
+      "원하는 분위기를 말하면 곡 목록을 만들어 주는 웹으로, 브라우저에서 바로 열 수 있습니다.\n\nAgent API는 붙어 있지 않고, 붙이려면 제미나이 키가 필요합니다.",
     host: "Vercel",
     server: "자체 서버 없음 · 외부 AI API",
     stack: ["JavaScript", "AI"],
@@ -125,7 +131,7 @@ window.projects = [
     tier: "services",
     title: "PersonaChat",
     summary:
-      "정해 둔 성격(페르소나)으로 대화하는 채팅입니다. 클라이언트는 브라우저에서 여는 웹앱이고, 서버는 그 대화를 맡습니다.",
+      "정해 둔 성격으로 대화하는 채팅으로, 브라우저에서 여는 쪽이 클라이언트이고 그 대화를 받아 답하는 서버가 따로 있습니다.",
     host: "Vercel",
     server: "Bun · Hono (별도 서버)",
     stack: ["TypeScript", "AI", "Bun", "Hono"],
@@ -147,7 +153,8 @@ window.projects = [
   {
     tier: "services",
     title: "Pocketbase Board",
-    summary: "게시판에 가까운 웹입니다.",
+    summary:
+      "글을 올리고 읽는 게시판에 가까운 웹으로, 화면은 브라우저에서 열고 글은 PocketBase에 저장합니다.",
     host: "Vercel",
     server: "PocketBase",
     stack: ["TypeScript", "PocketBase"],
@@ -160,7 +167,7 @@ window.projects = [
     tier: "other",
     title: "Apple Game Solver",
     summary:
-      "apple.oshizi.com 사과게임에서 합이 10인 칸을 찾아 자동으로 지웁니다. Playwright를 처음 써 본 작업입니다.",
+      "apple.oshizi.com 사과 게임에서 합이 10인 칸을 찾아 지우는 프로그램으로, 화면의 칸을 읽고 조건에 맞는 칸을 눌러 없앱니다.\n\nPlaywright를 처음 써서 브라우저 안을 조작해 본 작업입니다.",
     stack: ["JavaScript", "Playwright"],
     repo: "https://github.com/buc89l2nb41/AppleGameSolver",
     demo: null,
@@ -171,7 +178,7 @@ window.projects = [
     tier: "other",
     title: "Count The Fingers Solver",
     summary:
-      "countthefingers.com에 나오는 퀴즈를 자동으로 풉니다. Playwright를 처음 써 본 작업입니다.",
+      "countthefingers.com에 나오는 퀴즈를 읽고 답을 누르는 프로그램으로, 문제를 확인한 뒤 그 답을 화면에 입력합니다.\n\nPlaywright를 처음 써서 브라우저 안을 조작해 본 작업입니다.",
     stack: ["JavaScript", "Playwright"],
     repo: "https://github.com/buc89l2nb41/CountTheFingerSolver",
     demo: null,
@@ -182,7 +189,7 @@ window.projects = [
     tier: "games",
     title: "GrowRoll",
     summary:
-      "굴려 다니며 물건을 모아 커지는(괴혼 비슷한) 웹 3D 게임. 브라우저에서 바로 플레이할 수 있습니다. Trellis 메시를 넣었고(대량 생성은 Prompt Asset Forge), 면이 많아 성능이 나빠져 Low Poly Cultivar로 이어짐",
+      "굴려 다니며 물건을 모아 커지는 웹 3D 게임으로, 브라우저에서 바로 플레이하고 멀티플레이도 됩니다.\n\n정원 소품은 Trellis로 뽑은 메시를 넣었고, 그것을 대량으로 만든 도구가 Prompt Asset Forge입니다.\n\n면 수가 많아 게임이 무거워진 뒤의 고르기는 Low Poly Cultivar로 이어집니다.",
     host: "Vercel",
     server: "프론트만 (멀티는 선택 WebSocket)",
     stack: ["TypeScript", "Web"],
@@ -199,7 +206,7 @@ window.projects = [
     tier: "games",
     title: "GGPO Webgame",
     summary:
-      "Stable Diffusion으로 같은 캐릭터의 포즈별 스프라이트를 뽑으려던 DiffusionGen은, 프레임마다 얼굴과 옷이 바뀌고 포즈도 잘 따르지 않아 쓰지 못했습니다. 그래서 스프라이트를 뽑아 주는 사이트 AetherForge에서 그림을 뽑아, 격투 게임에 넣어 본 웹 프로토타입에 가깝습니다. 브라우저에서 바로 플레이할 수 있고, 만들다 보니 지연을 줄이는 넷코드(GGPO) 느낌도 궁금해서 붙여 봤지만, 넷코드를 깊게 이해한 전문 구현이라기보다 스프라이트·플레이 실험 쪽이 본래 목적입니다",
+      "브라우저에서 플레이하는 격투 게임 프로토타입입니다.\n\n같은 캐릭터의 포즈별 스프라이트를 Stable Diffusion으로 뽑으려던 DiffusionGen은, 프레임마다 얼굴과 옷이 바뀌고 포즈도 잘 따르지 않아 쓰지 못했습니다. 그래서 스프라이트를 뽑아 주는 사이트 AetherForge의 그림을 넣었습니다.\n\n지연을 줄이는 넷코드도 붙여 봤지만, 깊게 만든 넷코드 구현이라기보다 스프라이트를 넣어 플레이해 본 쪽에 가깝습니다.",
     host: "Vercel",
     server: "자체 서버 없음 · WebRTC P2P",
     stack: ["TypeScript", "Game", "WebRTC"],
@@ -207,6 +214,19 @@ window.projects = [
     demo: "https://ggpo-webgame.vercel.app",
     youtube: null,
     images: ["./assets/mock/ggpo-01.svg"],
+  },
+  {
+    tier: "featured",
+    title: "SpriteGen",
+    summary:
+      "같은 캐릭터의 동작 스프라이트를 뽑는 로컬 스튜디오로, 기준 그림을 고정한 뒤 문장이나 3D 포즈, 참고 영상으로 동작을 만들고 그 영상을 칸으로 자릅니다.\n\n프레임마다 얼굴을 다시 그리지 않고 동작만 바꿉니다.\n\n브라우저에서 여는 데모는 없고, 시트는 이 도구가 돌아가는 컴퓨터에 남습니다.",
+    detail:
+      "프레임마다 얼굴을 다시 그리지 않고, 기준 캐릭터 한 장을 고정한 다음 동작만 바꿉니다. 문장으로 영상을 만들거나, 3D 몸의 관절을 고쳐 포즈 영상을 만들거나, 참고 영상을 따라 가게 한 뒤 그 영상을 칸으로 자릅니다. 브라우저에서 여는 데모는 없고, 결과 시트는 이 도구가 돌아가는 컴퓨터에 남습니다.",
+    stack: ["TypeScript", "React", "Three.js", "Node", "Kling", "Cursor"],
+    repo: "https://github.com/buc89l2nb41/SpriteGen",
+    demo: null,
+    youtube: null,
+    images: [],
   },
   {
     tier: "other",

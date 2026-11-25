@@ -1,0 +1,65 @@
+# 사이트 검사와 GitHub Pages 배포
+#
+# 언제 도나요
+#   - main에 push할 때: 검사 → 통과하면 배포
+#   - PR을 열거나 고칠 때: 검사만
+#   - Actions 탭의 "Run workflow" 버튼: 검사 → 배포
+#
+# 처음 한 번 할 일 (레포 Settings)
+#   1. Settings → Pages → Build and deployment → Source를 "GitHub Actions"로 바꿉니다.
+#   2. (선택) Settings → Secrets and variables → Actions → New repository secret
+#      이름 FORBIDDEN_WORDS, 값은 공개 파일에 들어가면 안 되는 단어를 쉼표로 구분해 넣습니다.
+
+name: Check and deploy site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# 기본 권한은 읽기만. 배포 job에서만 필요한 권한을 더 줍니다.
+permissions:
+  contents: read
+
+# 배포가 겹치면 앞의 것이 끝날 때까지 기다립니다.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check site files
+        run: node scripts/check-site.mjs
+        env:
+          FORBIDDEN_WORDS: ${{ secrets.FORBIDDEN_WORDS }}
+
+  deploy:
+    needs: check
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      # 사이트에 필요한 파일만 모읍니다. README, CLAUDE.md, scripts/ 는 올라가지 않습니다.
+      - name: Collect site files
+        run: |
+          mkdir _site
+          cp -r index.html projects.js sky.js sky.css assets _site/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

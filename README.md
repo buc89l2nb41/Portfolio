@@ -1,76 +1,54 @@
 # Portfolio
 
-웹 · 게임 · AI 작업을 모아둔 포트폴리오 저장소입니다.
+AI에게 에디터 작업과 에셋 제작을 맡기는 도구를 만듭니다.
+AI가 손댈 곳은 도구로 열어 두고, 결과는 엔진 규칙이나 사람의 확인을 한 번 거치게 합니다.
 
-**라이브 사이트:** [https://buc89l2nb41.github.io/Portfolio/](https://buc89l2nb41.github.io/Portfolio/)  
-*(GitHub Pages 설정 후 위 주소로 열립니다. 저장소 URL과는 다릅니다.)*
+**사이트:** [https://buc89l2nb41.github.io/Portfolio/](https://buc89l2nb41.github.io/Portfolio/)
 
 ---
 
-## Projects
+## 주요 작업 (사이트의 별 순서)
 
-| Project | Stack | Demo | YouTube | Repo |
+| # | 작업 | 한 줄 | 확인 방법 | 레포 |
 | --- | --- | --- | --- | --- |
-| **Prompt Editor** | Unreal Engine 5.4, C++, Python, MCP | — | — | [GitHub](https://github.com/buc89l2nb41/UnrealPromptEditor) |
-| **GrowRoll** | TypeScript, Web | [Live](https://grow-roll-client.vercel.app) | — | [GitHub](https://github.com/buc89l2nb41/GrowRoll) |
-| **TranslationChat** | JavaScript, AI, Fastify | [Live](https://translationchat.onrender.com) | — | [GitHub](https://github.com/buc89l2nb41/TranslationChat) |
-| **Godot NNUE Prompt Chess** | Godot, GDScript, AI | — | — | [GitHub](https://github.com/buc89l2nb41/GodotNnuePromptChess) |
-| **GGPO Webgame** | TypeScript, Game | [Live](https://ggpo-webgame.vercel.app) | — | [GitHub](https://github.com/buc89l2nb41/GGPO_Webgame) |
-| **PersonaChat** | TypeScript, AI | [Live](https://persona-chat-gamma.vercel.app) | — | [GitHub](https://github.com/buc89l2nb41/PersonaChat) |
-| **PersonaChat Server** | TypeScript, Backend | — | — | [GitHub](https://github.com/buc89l2nb41/PersonaChatServer) |
-| **Pocketbase Board** | TypeScript, PocketBase | [Live](https://pocketbase-board.vercel.app) | — | [GitHub](https://github.com/buc89l2nb41/PocketbaseBoard) |
-| **AI Playlist Creator** | JavaScript, AI | [Live](https://ai-playlist-creator-eight.vercel.app) | — | [GitHub](https://github.com/buc89l2nb41/AiPlaylistCreator) |
-| **Prompt Asset Forge** | Python, AI | — | [YouTube](https://youtu.be/a6JBpMLviHk) | [GitHub](https://github.com/buc89l2nb41/PromptAssetForge) |
-| **Low Poly Cultivar** | TypeScript, 3D | — | [YouTube](https://youtu.be/5jGktxpn7FM) | [GitHub](https://github.com/buc89l2nb41/LowPolyCultivar) |
+| 1 | **Prompt Editor** | 언리얼 에디터 패널에서 문장으로 지시하면 AI가 MCP 도구로 에디터를 다룹니다 | [영상](https://www.youtube.com/watch?v=ukDAZP5qFCc) | [GitHub](https://github.com/buc89l2nb41/UnrealPromptEditor) |
+| 2 | **Prompt Asset Forge** | 테마 한 줄로 프롬프트 → PNG → GLB를 한꺼번에 만듭니다 | [영상](https://www.youtube.com/watch?v=a6JBpMLviHk) | [GitHub](https://github.com/buc89l2nb41/PromptAssetForge) |
+| 3 | **Low Poly Cultivar** | 무거운 메시를 여러 설정으로 줄이고 네 방향 유사도로 고릅니다 | [영상](https://www.youtube.com/watch?v=5jGktxpn7FM) | [GitHub](https://github.com/buc89l2nb41/LowPolyCultivar) |
+| 4 | **GrowRoll** | 위 도구로 만든 소품이 들어간 3D 웹 게임입니다 | [플레이](https://grow-roll-client.vercel.app) | [GitHub](https://github.com/buc89l2nb41/GrowRoll) |
+| 5 | **Godot NNUE Prompt Chess** | LLM이 고른 수를 Stockfish 후보와 규칙으로 거릅니다 | README | [GitHub](https://github.com/buc89l2nb41/GodotNnuePromptChess) |
+| 6 | **SpriteGen** | 기준 그림 한 장을 고정하고 동작만 바꿔 스프라이트를 만듭니다 | README | [GitHub](https://github.com/buc89l2nb41/SpriteGen) |
 
-> YouTube 칸은 영상 업로드 후 링크를 채울 예정입니다.
+## 기타
 
----
-
-## About
-
-프론트엔드와 인터랙티브 웹 경험을 중심으로 만든 작업물을 기록하는 공간입니다.  
-이 README와 사이트의 프로젝트 목록은 계속 업데이트됩니다.
+| 묶음 | 작업 | 데모 | 레포 |
+| --- | --- | --- | --- |
+| 배포한 AI 서비스 | TranslationChat | [열기](https://translationchat.onrender.com) | [GitHub](https://github.com/buc89l2nb41/TranslationChat) |
+| 배포한 AI 서비스 | AI Playlist Creator | [열기](https://ai-playlist-creator-eight.vercel.app) | [GitHub](https://github.com/buc89l2nb41/AiPlaylistCreator) |
+| 배포한 AI 서비스 | PersonaChat | [열기](https://persona-chat-gamma.vercel.app) | [클라이언트](https://github.com/buc89l2nb41/PersonaChat) · [서버](https://github.com/buc89l2nb41/PersonaChatServer) |
+| 게임 프로토타입 | GGPO Webgame | [플레이](https://ggpo-webgame.vercel.app) | [GitHub](https://github.com/buc89l2nb41/GGPO_Webgame) |
+| 브라우저 자동화 연습 | Apple Game Solver | — | [GitHub](https://github.com/buc89l2nb41/AppleGameSolver) |
+| 브라우저 자동화 연습 | Count The Fingers Solver | — | [GitHub](https://github.com/buc89l2nb41/CountTheFingerSolver) |
 
 ---
 
-## 이 저장소 구조
+## 저장소 구조
+
+빌드 도구가 없는 정적 사이트입니다. `index.html`을 브라우저로 열면 됩니다.
 
 | 파일 | 역할 |
 | --- | --- |
-| `index.html` | 포트폴리오 페이지 |
-| `styles.css` | 스타일 |
-| `projects.js` | 프로젝트 데이터 (여기만 수정해도 목록 갱신) |
-| `script.js` | 목록 렌더 · 스크롤 모션 |
-| `assets/` | 썸네일 이미지 |
+| `index.html` | 뼈대 (별자리 SVG, 옆 목록) |
+| `projects.js` | 문구 데이터. `window.profile`과 `window.projects` |
+| `sky.js` | 별 차례, 기타 묶음, 화면 전환 |
+| `sky.css` | 스타일 |
+| `assets/` | 스크린샷 |
 
-### 프로젝트 추가 / 수정
+문구를 고칠 때는 `projects.js`만 바꾸면 됩니다. 별 작업은 `problem` / `did` / `result`, 기타 작업은 `summary`를 씁니다.
 
-`projects.js`에서 항목을 고칩니다.
+## 자동 검사와 배포 (GitHub Actions)
 
-```js
-{
-  title: "프로젝트 이름",
-  summary: "한 줄 설명",
-  stack: ["TypeScript", "Web"],
-  repo: "https://github.com/buc89l2nb41/...",
-  demo: "https://....vercel.app",      // 없으면 null
-  youtube: "https://youtube.com/...",  // 없으면 null
-  images: ["./assets/growroll/01.png", "./assets/growroll/02.png"], // 없으면 []
-  youtube: "https://youtube.com/...",  // 갤러리에 영상으로 표시, 없으면 null
-}
-```
+`.github/workflows/pages.yml`이 push마다 `scripts/check-site.mjs`를 돌리고, 통과하면 사이트 파일만 모아 GitHub Pages에 올립니다. PR에서는 검사만 합니다.
 
----
-
-## GitHub Pages 켜는 방법
-
-1. 이 저장소에 코드를 push
-2. **Settings → Pages**
-3. Source: **Deploy from a branch**
-4. Branch: `main` / folder: `/ (root)` → Save
-
-잠시 후 사이트가 열립니다:  
-[https://buc89l2nb41.github.io/Portfolio/](https://buc89l2nb41.github.io/Portfolio/)
-
-저장소 About의 **Website** 칸에 위 주소를 넣어 두면, GitHub 저장소 페이지에서도 바로 사이트로 들어갈 수 있습니다.
+- 로컬에서 같은 검사: `node scripts/check-site.mjs`
+- 검사 항목: JS 문법, 금지어, 이미지·파일 경로, 사이트에 나오는 작업의 레포 링크
+- 처음 한 번: Settings → Pages → Source를 **GitHub Actions**로 바꿉니다.

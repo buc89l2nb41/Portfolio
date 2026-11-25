@@ -10,9 +10,10 @@ Thumbs.db
 .env
 .env.*
 
-# Local handoff (do not push)
+# Local handoff and resume (do not push)
 CHRONO_HANDOFF.md
 *_HANDOFF.md
+resume/
 
 # Local YouTube videos (do not push)
 Video/

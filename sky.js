@@ -1,8 +1,8 @@
 (function () {
-  const projects = window.projects || [];
-  const PLACEHOLDER_VIDEO = "aqz-KE-bpKQ";
+  const projects = (window.projects || []).filter((project) => !project.hidden);
+  const profile = window.profile || {};
 
-  // 별의 좌표와 차례. 순서만 바꾸면 선도 같이 바뀐다.
+  // 별의 좌표. 별 차례는 starTitles가 정한다.
   const dipper = [
     [76, 14],
     [84, 26],
@@ -13,25 +13,24 @@
     [16, 80],
   ];
 
+  // 별 7개의 차례. 마지막 "기타"는 otherGroups를 묶어 보여 준다.
   const starTitles = [
-    "GrowRoll",
+    "Prompt Editor",
     "Prompt Asset Forge",
     "Low Poly Cultivar",
-    "GGPO Webgame",
+    "GrowRoll",
+    "Godot NNUE Prompt Chess",
     "SpriteGen",
-    "Prompt Editor",
     "기타",
   ];
 
-  const otherTitles = [
-    "Godot NNUE Prompt Chess",
-    "Apple Game Solver",
-    "Count The Fingers Solver",
-    "AI Playlist Creator",
-    "TranslationChat",
-    "PersonaChat",
-    "Pocketbase Board",
+  const otherGroups = [
+    { label: "배포한 AI 서비스", titles: ["TranslationChat", "AI Playlist Creator", "PersonaChat"] },
+    { label: "게임 프로토타입", titles: ["GGPO Webgame"] },
+    { label: "브라우저 자동화 연습", titles: ["Apple Game Solver", "Count The Fingers Solver"] },
   ];
+  const otherTitles = otherGroups.flatMap((group) => group.titles);
+  const OTHER_LEAD = "별에 넣지 않은 작업입니다. 배포해 둔 AI 서비스, 게임 프로토타입, 처음 바이브코딩을 익히며 만든 브라우저 자동화를 한 줄씩 적었습니다.";
 
   const points = dipper;
   const main = document.getElementById("top");
@@ -52,48 +51,42 @@
     if (!project || !project.repo) return null;
     return {
       title,
-      text: project.summary
-        .split(/\n\s*\n/)
-        .map((part) => part.replace(/\s+/g, " ").trim())
-        .filter(Boolean)
-        .join("\n"),
+      text: String(project.summary || "").replace(/\s+/g, " ").trim(),
       repo: project.repo,
       demo: project.demo,
-      game: project.tier === "games",
-      links: title === "PersonaChat"
-        ? [
-            { label: "클라이언트 GitHub", href: project.repo },
-            { label: "서버 GitHub", href: findProject("PersonaChat Server")?.repo },
-          ].filter((link) => link.href)
-        : null,
+      game: Boolean(project.game),
+      links: project.links || null,
     };
   }
 
   const stars = starTitles
     .map((title) => {
       if (title === "기타") {
-        const items = otherTitles.map(itemOf).filter(Boolean);
+        const groups = otherGroups
+          .map((group) => ({ label: group.label, items: group.titles.map(itemOf).filter(Boolean) }))
+          .filter((group) => group.items.length);
         return {
           title,
-          text: "게임 묶음에 넣지 않은 작업입니다. 체스는 엔진이 수를 막는 게임이고, 나머지는 바이브코딩으로 감을 잡으며 만든 코드입니다.",
+          label: title,
+          text: OTHER_LEAD,
           projects: otherTitles,
-          items,
+          groups,
           demo: null,
           game: false,
           video: false,
-          links: null,
         };
       }
-      const item = itemOf(title);
-      if (!item) return null;
+      const project = findProject(title);
+      if (!project || !project.repo) return null;
       return {
         title,
-        text: item.text,
+        label: project.short || title,
+        project,
         projects: [title],
-        demo: item.demo,
-        game: item.game,
-        video: Boolean(youtubeId(findProject(title)?.youtube)),
-        links: item.links,
+        demo: project.demo,
+        game: Boolean(project.game),
+        video: Boolean(youtubeId(project.youtube)),
+        links: project.links || null,
       };
     })
     .filter(Boolean);
@@ -133,7 +126,7 @@
   function youtubeId(url) {
     if (!url) return null;
     const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([^&?/]+)/);
-    if (!match || match[1] === PLACEHOLDER_VIDEO) return null;
+    if (!match) return null;
     return match[1];
   }
 
@@ -278,57 +271,81 @@
       .join("");
   }
 
+  function otherRow(item) {
+    return `
+      <li>
+        <div class="sky-title-row">
+          <h3>${escapeHtml(item.title)}</h3>
+          ${linkRow(item)}
+        </div>
+        ${textParagraphs(item.text, item.title)}
+      </li>`;
+  }
+
   function stageMarkup(star, index) {
-    if (star.items) {
-      const rows = star.items
+    const number = String(index + 1).padStart(2, "0");
+    if (star.groups) {
+      const groups = star.groups
         .map(
-          (item) => `
-            <li>
-              <div class="sky-title-row">
-                <h3>${escapeHtml(item.title)}</h3>
-                ${linkRow(item)}
-              </div>
-              ${textParagraphs(item.text, item.title)}
-            </li>`,
+          (group) => `
+            <p class="sky-group">${escapeHtml(group.label)}</p>
+            <ul class="sky-others">${group.items.map(otherRow).join("")}</ul>`,
         )
         .join("");
       return `
         <section class="sky-stage is-list" id="star-${index + 1}" data-star="${index}">
           <div class="sky-stage-inner">
             <div class="sky-copy">
-              <p class="sky-index">${String(index + 1).padStart(2, "0")}</p>
+              <p class="sky-index">${number}</p>
               <h2>${escapeHtml(star.title)}</h2>
               ${star.text ? `<p class="sky-lead">${escapeHtml(star.text)}</p>` : ""}
-              <ul class="sky-others">${rows}</ul>
+              ${groups}
             </div>
           </div>
         </section>
       `;
     }
-    const links = linkRow({ ...star, repo: findProject(star.projects[0])?.repo });
-    const heading = `<p class="sky-index">${String(index + 1).padStart(2, "0")}</p><div class="sky-title-row"><h2>${escapeHtml(star.title)}</h2>${links}</div>`;
-    const names = findProject(star.projects[0])?.stack || [];
+    const project = star.project;
+    const links = linkRow({ ...star, repo: project.repo });
+    const heading = `<p class="sky-index">${number}</p><div class="sky-title-row"><h2>${escapeHtml(star.title)}</h2>${links}</div>`;
+    const section = (label, body) => (body ? `<div class="sky-part"><p class="sky-part-label">${label}</p>${body}</div>` : "");
+    const did = (project.did || []).length
+      ? `<ul class="sky-did">${project.did.map((line) => `<li>${linkedText(line, star.title)}</li>`).join("")}</ul>`
+      : "";
+    const names = project.stack || [];
     const stack = names.length ? `<p class="sky-note">사용 기술  ${escapeHtml(names.join(" · "))}</p>` : "";
-    const detail = `${textParagraphs(star.text, star.title)}${stack}`;
+    const detail = [
+      section("문제", project.problem ? `<p>${linkedText(project.problem, star.title)}</p>` : ""),
+      section("한 일", did),
+      section("결과", project.result ? `<p>${linkedText(project.result, star.title)}</p>` : ""),
+      stack,
+    ].join("");
     const visual = visualMarkup(star);
-    const copy = visual
-      ? `<div class="sky-copy">${heading}</div><div class="sky-detail">${detail}</div>${visual}`
-      : `<div class="sky-copy">${heading}${detail}</div>`;
     return `
-      <section class="sky-stage" id="star-${index + 1}" data-star="${index}">
+      <section class="sky-stage${visual ? " has-visual" : ""}" id="star-${index + 1}" data-star="${index}">
         <div class="sky-stage-inner">
-          ${copy}
+          <div class="sky-copy">${heading}</div>
+          <div class="sky-detail">${detail}</div>
+          ${visual}
         </div>
       </section>
     `;
   }
 
+  const contact = [
+    profile.github ? `<a href="${escapeHtml(profile.github)}" target="_blank" rel="noopener noreferrer">GitHub</a>` : "",
+    profile.email ? `<a href="mailto:${escapeHtml(profile.email)}">${escapeHtml(profile.email)}</a>` : "",
+  ].filter(Boolean).join("");
+  const who = [profile.name, profile.role].filter(Boolean).map(escapeHtml).join(" · ");
+
   main.innerHTML = `
     <section class="sky-stage is-title" id="top-stage" data-star="-1">
       <div class="sky-stage-inner">
         <div class="sky-copy">
-          <p class="sky-index">시작</p>
-          <h1>AI에게 에디터 작업과 에셋 제작을 맡기는 도구를 만듭니다</h1>
+          <p class="sky-index">${who || "시작"}</p>
+          <h1>${escapeHtml(profile.headline || "")}</h1>
+          ${profile.intro ? `<p class="sky-lead">${escapeHtml(profile.intro)}</p>` : ""}
+          ${contact ? `<div class="sky-links">${contact}</div>` : ""}
           <p class="sky-hint">별을 누르면 그 작업으로 바로 갑니다</p>
         </div>
       </div>
@@ -412,9 +429,9 @@
     hit.setAttribute("r", "3.4");
     hit.setAttribute("class", "sky-figure-hit");
     hit.dataset.star = String(index);
-    hit.setAttribute("aria-label", starTitles[index]);
+    hit.setAttribute("aria-label", stars[index]?.title || "");
     figureStars.appendChild(hit);
-    const title = starTitles[index];
+    const title = stars[index]?.label;
     if (!title) return;
     const place = nameLabels[index];
     const anchor = place.anchor || "end";

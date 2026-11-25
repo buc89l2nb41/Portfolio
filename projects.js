@@ -25,13 +25,14 @@ window.projects = [
     problem:
       "액터를 놓고 라이트와 머티리얼을 고치는 언리얼 에디터 작업을 말로 맡기고 싶었습니다. 하지만 AI가 에디터를 마음대로 건드리면 결과를 믿기 어렵습니다.",
     did: [
-      "UE 5.4 에디터의 Tools 메뉴에 붙는 프롬프트 패널을 Slate로 만들었습니다.",
-      "패널에서 보낸 문장과 그림은 옆에서 도는 Python(FastAPI) 프로그램이 Cursor API로 읽습니다.",
-      "AI는 플러그인이 루프백 MCP로 열어 둔 도구만 호출합니다. 액터, 라이트, 머티리얼, 나이아가라, 랜드스케이프, 카메라를 고치고, 블루프린트를 컴파일하거나 플레이 중인 캐릭터를 움직입니다.",
-      "텍스처나 Trellis로 뽑은 3D를 씬에 넣기 전에는 사람이 한 번 보고 넘어가게 끊어 두었습니다.",
+      "UE 5.4 에디터의 Tools 메뉴에 붙는 프롬프트 패널을 C++/Slate로 만들었습니다. 대기열, 모델 선택, 그림 첨부, 도구 호출 기록이 있습니다.",
+      "패널에서 보낸 문장은 옆에서 도는 Python(FastAPI) 프로그램이 Cursor API로 보냅니다.",
+      "AI는 플러그인이 내 컴퓨터 안(127.0.0.1)에 연 MCP 서버의 도구 180개만 씁니다. 액터, 라이트, 머티리얼, 나이아가라, 블루프린트, 지형, 시퀀서, 카메라, 플레이 중 캐릭터 이동까지 다룹니다.",
+      "Trellis로 뽑은 3D와 텍스처는 사람이 그림과 미리보기를 보고 버튼으로 승인해야 프로젝트에 들어가게 했습니다.",
+      "플레이 중에 에디터 월드를 고치려 하면 플레이를 먼저 멈추고, 에디터 상태를 못 읽으면 거절하게 했습니다.",
     ],
     result:
-      "에디터 안의 패널 하나로 위 작업을 지시할 수 있습니다. 브라우저 데모는 없어서 영상과 스크린샷으로 보여 드립니다. 이펙트를 레퍼런스 그림에 맞추는 부분은 아직 다듬고 있습니다.",
+      "에디터 안의 패널 하나로 위 작업을 지시할 수 있습니다. 개인 실험 프로젝트이고 Windows와 UE 5.4에서만 확인했습니다. 이펙트를 레퍼런스 그림에 맞추는 부분은 아직 다듬고 있습니다.",
     stack: ["Unreal Engine 5.4", "C++", "Slate", "Python", "FastAPI", "MCP", "Cursor API"],
     repo: "https://github.com/buc89l2nb41/UnrealPromptEditor",
     demo: null,
@@ -54,7 +55,7 @@ window.projects = [
       "Trellis가 꺼져 있으면 시작 스크립트가 먼저 띄우고, 준비가 끝난 뒤 3D 생성을 시작하게 했습니다.",
     ],
     result:
-      "GrowRoll에 들어간 정원 소품을 이 도구로 뽑았습니다. 다만 Trellis 결과는 면 수가 많아 게임에서 무거웠고, 그 문제는 Low Poly Cultivar에서 다룹니다.",
+      "GrowRoll의 정원 소품 39개를 이 도구로 뽑았습니다. 다만 Trellis 결과는 면 수가 많아 게임에서 무거웠고, 그 문제는 Low Poly Cultivar에서 다룹니다.",
     stack: ["Python", "Cursor API", "Trellis 2", "Gradio"],
     repo: "https://github.com/buc89l2nb41/PromptAssetForge",
     demo: null,
@@ -72,7 +73,7 @@ window.projects = [
       "Playwright로 여러 모델을 차례로 처리하는 배치도 붙였습니다.",
     ],
     result:
-      "눈대중 대신 유사도 점수와 면 수를 보고 고릅니다. 로컬 웹 도구라 브라우저 데모는 없습니다.",
+      "GrowRoll의 나무 모델 하나로 돌렸을 때 면 수는 17,559개에서 5,715개로, 파일은 약 2.6MB에서 약 93KB로 줄었고 1파일에 48초 걸렸습니다. 이 결과의 유사도 점수는 도구 기준 \"주의\" 구간이라 사람이 한 번 더 보는 것이 좋습니다. 로컬 웹 도구라 브라우저 데모는 없습니다.",
     stack: ["TypeScript", "React", "Three.js", "Express", "gltfpack", "Playwright"],
     repo: "https://github.com/buc89l2nb41/LowPolyCultivar",
     demo: null,
@@ -92,10 +93,10 @@ window.projects = [
     did: [
       "Three.js와 Rapier로 굴리고 붙이는 움직임을 만들고, 클라이언트를 Vercel에 배포했습니다.",
       "Node와 WebSocket으로 릴레이 서버를 만들어 같은 맵에서 서로의 덩어리를 보게 했습니다. 서버가 없어도 혼자 플레이할 수 있습니다.",
-      "정원 소품은 Prompt Asset Forge로 뽑은 Trellis 메시를 넣었습니다.",
+      "정원 소품 39개는 Prompt Asset Forge로 뽑고 Low Poly Cultivar로 줄여서 넣었습니다.",
     ],
     result:
-      "브라우저에서 바로 플레이할 수 있습니다. 앞의 에셋 도구가 실제로 쓰인 곳이라 함께 둡니다.",
+      "브라우저에서 바로 플레이할 수 있습니다. 소품 39개의 삼각형 수는 합계 460,865개에서 99,577개로, 파일 크기는 약 88.7MB에서 약 1.7MB로 줄었습니다.",
     stack: ["TypeScript", "Three.js", "Rapier", "Vite", "Node", "WebSocket"],
     repo: "https://github.com/buc89l2nb41/GrowRoll",
     demo: "https://grow-roll-client.vercel.app",
@@ -115,15 +116,16 @@ window.projects = [
       "Godot 체스에 '공격적으로', '이 오프닝으로' 같은 지시를 받는 AI 상대 모드를 붙였습니다.",
       "Stockfish(NNUE)가 지금 장면에서 둘 만한 후보 수 여러 개를 먼저 뽑고, AI는 그 목록 안에서만 고릅니다.",
       "AI 쪽은 옆에서 도는 Python(FastAPI) 프로그램이 Cursor API로 처리합니다.",
-      "후보 밖이거나 규칙에 맞지 않는 수는 게임이 마지막에 막고 엔진 후보로 바꿉니다. FEN이나 PGN을 넣으면 코칭 설명도 해 줍니다.",
+      "후보 밖이거나 규칙에 맞지 않는 수는 게임이 보드 사본에 먼저 둬 보고 막은 뒤 엔진 후보로 바꿉니다. 판정마다 [GATE] 기록을 남기고 채팅창에 교체 사실을 보여 줍니다.",
+      "API 키 없이 돌릴 수 있는 게이트 테스트(Python 4건, Godot 12건)를 만들었습니다.",
     ],
     result:
-      "AI의 답은 스타일과 설명에만 쓰고, 실제로 놓는 수는 엔진 후보와 규칙이 정합니다. 아직 동작 영상이 없어 글로만 설명합니다.",
+      "테스트로 AI 답에 불법 수 e8e1을 넣었더니 게이트가 엔진 후보 e7e6으로 바꿔 보드에 올렸고, 게이트 테스트는 모두 통과했습니다. 오프닝 책 수라고 표시된 수는 후보 검사를 건너뛰고 규칙 검사만 거칩니다.",
     stack: ["Godot", "GDScript", "Stockfish NNUE", "Python", "FastAPI", "Cursor API"],
     repo: "https://github.com/buc89l2nb41/GodotNnuePromptChess",
     demo: null,
     youtube: null,
-    images: [],
+    images: ["./assets/chess/gate-demo.png"],
   },
   {
     title: "SpriteGen",
@@ -159,7 +161,7 @@ window.projects = [
     repo: "https://github.com/buc89l2nb41/GGPO_Webgame",
     demo: "https://ggpo-webgame.vercel.app",
     youtube: null,
-    images: [],
+    images: ["./assets/ggpo/sprite-demo.gif"],
   },
 
   // 기타 — 한두 문장만

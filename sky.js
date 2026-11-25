@@ -11,9 +11,10 @@
     [37, 57],
     [26, 69],
     [16, 80],
+    [7, 90],
   ];
 
-  // 별 7개의 차례. 마지막 "기타"는 otherGroups를 묶어 보여 준다.
+  // 별 8개의 차례. dipper 좌표 수와 같아야 한다. 마지막 "기타"는 otherGroups를 묶어 보여 준다.
   const starTitles = [
     "Prompt Editor",
     "Prompt Asset Forge",
@@ -21,16 +22,16 @@
     "GrowRoll",
     "Godot NNUE Prompt Chess",
     "SpriteGen",
+    "GGPO Webgame",
     "기타",
   ];
 
   const otherGroups = [
     { label: "배포한 AI 서비스", titles: ["TranslationChat", "AI Playlist Creator", "PersonaChat"] },
-    { label: "게임 프로토타입", titles: ["GGPO Webgame"] },
     { label: "브라우저 자동화 연습", titles: ["Apple Game Solver", "Count The Fingers Solver"] },
   ];
   const otherTitles = otherGroups.flatMap((group) => group.titles);
-  const OTHER_LEAD = "별에 넣지 않은 작업입니다. 배포해 둔 AI 서비스, 게임 프로토타입, 처음 바이브코딩을 익히며 만든 브라우저 자동화를 한 줄씩 적었습니다.";
+  const OTHER_LEAD = "별에 넣지 않은 작업입니다. 배포해 둔 AI 서비스와, 처음 바이브코딩을 익히며 만든 브라우저 자동화를 한 줄씩 적었습니다.";
 
   const points = dipper;
   const main = document.getElementById("top");
@@ -413,6 +414,7 @@
     { y: 52, anchor: "start" },
     { y: 66, anchor: "start" },
     { y: 80, anchor: "start" },
+    { y: 90, anchor: "start" },
   ];
 
   points.forEach((point, index) => {

@@ -143,6 +143,24 @@ window.projects = [
     youtube: null,
     images: [],
   },
+  {
+    title: "GGPO Webgame",
+    game: true,
+    problem:
+      "AI로 뽑은 캐릭터 스프라이트를 실제 게임에 넣어 움직여 보고 싶었고, 격투 게임의 롤백 넷코드(GGPO 방식)가 어떻게 돌아가는지도 궁금했습니다.",
+    did: [
+      "React와 Canvas로 브라우저에서 하는 2D 격투 게임을 만들었습니다. 60FPS 고정 루프, 히트박스, 캐릭터 상태 전환이 들어 있습니다.",
+      "WebRTC(PeerJS)로 두 브라우저를 직접 잇고, 롤백 넷코드를 붙였습니다. 연결을 맺는 신호 서버는 Node와 Socket.io로 따로 두었습니다.",
+      "Stable Diffusion으로 뽑은 스프라이트는 프레임마다 얼굴과 옷이 바뀌어 쓰지 못했고, AetherForge로 뽑은 그림을 넣었습니다.",
+    ],
+    result:
+      "브라우저에서 바로 플레이할 수 있습니다. 롤백 넷코드는 AI 코딩 도구와 함께 붙여 본 것이라, 원리를 깊이 이해하고 만든 구현은 아닙니다.",
+    stack: ["TypeScript", "React", "Canvas", "WebRTC", "PeerJS", "Socket.io"],
+    repo: "https://github.com/buc89l2nb41/GGPO_Webgame",
+    demo: "https://ggpo-webgame.vercel.app",
+    youtube: null,
+    images: [],
+  },
 
   // 기타 — 한두 문장만
   {
@@ -172,15 +190,6 @@ window.projects = [
       { label: "클라이언트 GitHub", href: "https://github.com/buc89l2nb41/PersonaChat" },
       { label: "서버 GitHub", href: "https://github.com/buc89l2nb41/PersonaChatServer" },
     ],
-  },
-  {
-    title: "GGPO Webgame",
-    game: true,
-    summary:
-      "브라우저에서 둘이 하는 격투 게임 프로토타입입니다. WebRTC로 연결하고 롤백 넷코드를 붙여 봤지만, 깊이 이해하고 만든 구현은 아닙니다. 캐릭터 그림은 AetherForge로 뽑아 넣었습니다.",
-    stack: ["TypeScript", "WebRTC"],
-    repo: "https://github.com/buc89l2nb41/GGPO_Webgame",
-    demo: "https://ggpo-webgame.vercel.app",
   },
   {
     title: "Apple Game Solver",

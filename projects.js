@@ -55,7 +55,7 @@ window.projects = [
       "Trellis가 꺼져 있으면 시작 스크립트가 먼저 띄우고, 준비가 끝난 뒤 3D 생성을 시작하게 했습니다.",
     ],
     result:
-      "GrowRoll의 정원 소품 39개를 이 도구로 뽑았습니다. 다만 Trellis 결과는 면 수가 많아 게임에서 무거웠고, 그 문제는 Low Poly Cultivar에서 다룹니다.",
+      "GrowRoll의 정원 소품 39개를 이 도구로 뽑았습니다. 다만 Trellis는 면 수를 10,000개 아래로 줄일 수 없어 게임에서 무거웠고, 그 문제는 Low Poly Cultivar에서 다룹니다. 생성 결과의 모양은 매번 달라서 쓸 만한지는 사람이 미리보기로 확인합니다.",
     stack: ["Python", "Cursor API", "Trellis 2", "Gradio"],
     repo: "https://github.com/buc89l2nb41/PromptAssetForge",
     demo: null,
@@ -130,20 +130,20 @@ window.projects = [
   {
     title: "SpriteGen",
     problem:
-      "게임용 동작 스프라이트를 이미지 생성으로 뽑으면 프레임마다 얼굴과 옷이 바뀌었습니다.",
+      "이미지 생성으로 스프라이트 칸을 한 장씩 뽑으면 칸마다 얼굴과 옷이 바뀌었습니다.",
     did: [
-      "기준 캐릭터 그림 한 장을 고정하고, 동작만 바꾼 영상을 만드는 로컬 도구를 만들었습니다.",
-      "동작은 문장으로 지시하거나, 3D 몸의 관절로 포즈를 잡거나, 참고 영상을 따라 하게 해서 만듭니다.",
-      "만든 영상을 칸으로 잘라 스프라이트 여러 장과 시트 한 장으로 저장합니다.",
-      "AI 에이전트가 화면 버튼을 누르지 않고 HTTP로 생성을 요청하도록 사용 규칙 문서를 두었습니다. 돈이 나가는 호출은 사람이 시킬 때만 합니다.",
+      "기준 캐릭터 그림 한 장을 고정하고, 영상 모델로 동작 영상을 만든 뒤 8칸으로 잘라 정렬하는 로컬 도구를 만들었습니다.",
+      "동작은 세 가지로 정합니다. 문장으로 지시하거나(Kling 3), 화면의 3D 몸으로 포즈를 잡거나, 참고 영상을 따라 하게 합니다(Kling 3 Motion Control).",
+      "AI 에이전트가 화면 버튼 없이 HTTP로 생성을 요청하도록 사용 규칙(AGENTS.md)을 적고, 돈이 나가는 호출은 사람이 시킬 때만 하게 했습니다.",
+      "연결이 끊기거나 서버를 다시 켜도 같은 작업을 이어받게 했습니다.",
     ],
     result:
-      "결과는 이 도구가 도는 컴퓨터에 남고, 브라우저 데모는 없습니다. 아직 결과 이미지를 올리지 않아 글로만 설명합니다.",
-    stack: ["TypeScript", "React", "Three.js", "Node", "Vite", "Kling"],
+      "같은 캐릭터로 동작별 8장 스프라이트와 시트를 만듭니다. 함께 보이는 그림은 참고 영상으로 만든 승룡권 시트입니다. 영상 모델이 동작을 일찍 끝내면 뒤쪽 칸이 거의 같은 그림이 되고, 캐릭터가 등을 돌리거나 배경이 남는 결과도 있습니다.",
+    stack: ["TypeScript", "React", "Vite", "Three.js", "fal", "Kling 3", "ffmpeg", "sharp"],
     repo: "https://github.com/buc89l2nb41/SpriteGen",
     demo: null,
     youtube: null,
-    images: [],
+    images: ["./assets/spritegen/uppercut-sheet.png"],
   },
   {
     title: "GGPO Webgame",
@@ -152,12 +152,12 @@ window.projects = [
       "AI로 뽑은 캐릭터 스프라이트를 실제 게임에 넣어 움직여 보고 싶었고, 격투 게임의 롤백 넷코드(GGPO 방식)가 어떻게 돌아가는지도 궁금했습니다.",
     did: [
       "React와 Canvas로 브라우저에서 하는 2D 격투 게임을 만들었습니다. 60FPS 고정 루프, 히트박스, 캐릭터 상태 전환이 들어 있습니다.",
-      "WebRTC(PeerJS)로 두 브라우저를 직접 잇고, 롤백 넷코드를 붙였습니다. 연결을 맺는 신호 서버는 Node와 Socket.io로 따로 두었습니다.",
-      "Stable Diffusion으로 뽑은 스프라이트는 프레임마다 얼굴과 옷이 바뀌어 쓰지 못했고, AetherForge로 뽑은 그림을 넣었습니다.",
+      "WebRTC(PeerJS)로 두 브라우저를 직접 잇고 롤백 넷코드를 붙였습니다. 입력 지연은 2프레임, 최대 롤백은 8프레임으로 설정했습니다. 연결을 맺는 신호 서버(Node, Socket.io)는 Render에 따로 올렸습니다.",
+      "Stable Diffusion으로 뽑은 스프라이트는 프레임마다 얼굴과 옷이 바뀌어 쓰지 못했고, AetherForge로 뽑은 그림을 넣었습니다. 프레임별 히트박스를 맞추는 개발용 편집기도 만들었습니다.",
     ],
     result:
-      "브라우저에서 바로 플레이할 수 있습니다. 롤백 넷코드는 AI 코딩 도구와 함께 붙여 본 것이라, 원리를 깊이 이해하고 만든 구현은 아닙니다.",
-    stack: ["TypeScript", "React", "Canvas", "WebRTC", "PeerJS", "Socket.io"],
+      "데모에서 LOCAL PLAY를 누르면 한 키보드로 둘이 바로 해 볼 수 있습니다. 롤백 넷코드는 AI 코딩 도구와 함께 만들며 원리를 배워 간 것이라 깊이 이해하고 설계한 구현은 아니고, 실제 회선에서 롤백이 얼마나 일어나는지는 재지 않았습니다.",
+    stack: ["TypeScript", "React", "Canvas", "Zustand", "WebRTC", "PeerJS", "Socket.io"],
     repo: "https://github.com/buc89l2nb41/GGPO_Webgame",
     demo: "https://ggpo-webgame.vercel.app",
     youtube: null,

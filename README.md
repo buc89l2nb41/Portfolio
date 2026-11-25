@@ -15,8 +15,8 @@ AI가 손댈 곳은 도구로 열어 두고, 결과는 엔진 규칙이나 사�
 | 2 | **Prompt Asset Forge** | 테마 한 줄로 프롬프트 → PNG → GLB를 한꺼번에 만듭니다 | [영상](https://www.youtube.com/watch?v=a6JBpMLviHk) | [GitHub](https://github.com/buc89l2nb41/PromptAssetForge) |
 | 3 | **Low Poly Cultivar** | 무거운 메시를 여러 설정으로 줄이고 네 방향 유사도로 고릅니다 | [영상](https://www.youtube.com/watch?v=5jGktxpn7FM) | [GitHub](https://github.com/buc89l2nb41/LowPolyCultivar) |
 | 4 | **GrowRoll** | 위 도구로 만든 소품이 들어간 3D 웹 게임입니다 | [플레이](https://grow-roll-client.vercel.app) | [GitHub](https://github.com/buc89l2nb41/GrowRoll) |
-| 5 | **Godot NNUE Prompt Chess** | LLM이 고른 수를 Stockfish 후보와 규칙으로 거릅니다 | README | [GitHub](https://github.com/buc89l2nb41/GodotNnuePromptChess) |
-| 6 | **SpriteGen** | 기준 그림 한 장을 고정하고 동작만 바꿔 스프라이트를 만듭니다 | README | [GitHub](https://github.com/buc89l2nb41/SpriteGen) |
+| 5 | **Godot NNUE Prompt Chess** | LLM이 고른 수를 Stockfish 후보와 규칙으로 거릅니다 | 스크린샷 · 게이트 테스트 | [GitHub](https://github.com/buc89l2nb41/GodotNnuePromptChess) |
+| 6 | **SpriteGen** | 기준 그림 한 장을 고정하고 동작만 바꿔 스프라이트를 만듭니다 | 결과 시트 | [GitHub](https://github.com/buc89l2nb41/SpriteGen) |
 | 7 | **GGPO Webgame** | AI로 뽑은 스프라이트를 넣은 브라우저 격투 게임 프로토타입입니다 | [플레이](https://ggpo-webgame.vercel.app) | [GitHub](https://github.com/buc89l2nb41/GGPO_Webgame) |
 
 ## 기타

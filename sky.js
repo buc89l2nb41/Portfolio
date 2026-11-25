@@ -176,20 +176,21 @@
         images.push({ type: "image", src, label: project.title });
       });
     });
-    return videos.length ? videos : images;
+    // 영상이 먼저, 스크린샷은 그 뒤 썸네일로.
+    return [...videos, ...images];
   }
 
   function visualMarkup(star) {
     const frames = mediaOf(star);
     if (!frames.length) return "";
-    const thumbs = frames[0].type === "image" && frames.length > 1
+    const thumbs = frames.length > 1
       ? frames.map((frame, index) => ({ frame, index }))
       : [];
     const strip = thumbs.length
       ? `<div class="sky-thumbs"${thumbs.length > 3 ? ' data-scroll="1"' : ""}><div class="sky-thumbs-track">${thumbs
           .map(
             (item) =>
-              `<button type="button" data-frame="${item.index}" aria-label="${escapeHtml(item.frame.label)}"${item.index === 0 ? ' class="is-active"' : ""}><img src="${item.frame.src}" alt="" draggable="false"></button>`,
+              `<button type="button" data-frame="${item.index}" aria-label="${escapeHtml(item.frame.type === "video" ? `${item.frame.label} 영상` : item.frame.label)}" class="${[item.index === 0 ? "is-active" : "", item.frame.type === "video" ? "is-video" : ""].filter(Boolean).join(" ")}"><img src="${item.frame.type === "video" ? item.frame.fallback : item.frame.src}" alt="" draggable="false"></button>`,
           )
           .join("")}</div></div>`
       : "";

@@ -823,3 +823,20 @@ iframe {
       "visual";
   }
 }
+
+/* 썸네일 줄의 영상 칸 표시 */
+.sky-thumbs button.is-video {
+  position: relative;
+}
+
+.sky-thumbs button.is-video::after {
+  content: "▶";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 0.85rem;
+  background: rgba(7, 9, 16, 0.35);
+  pointer-events: none;
+}

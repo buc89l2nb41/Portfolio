@@ -8,15 +8,17 @@
     [84, 26],
     [68, 22],
     [58, 34],
-    [37, 57],
-    [26, 69],
+    [45, 48],
+    [35, 59],
+    [25, 70],
     [16, 80],
     [7, 90],
   ];
 
-  // 별 8개의 차례. dipper 좌표 수와 같아야 한다. 마지막 "기타"는 otherGroups를 묶어 보여 준다.
+  // 별 9개의 차례. dipper 좌표 수와 같아야 한다. 마지막 "기타"는 otherGroups를 묶어 보여 준다.
   const starTitles = [
     "Prompt Editor",
+    "StepCut",
     "Prompt Asset Forge",
     "Low Poly Cultivar",
     "GrowRoll",
@@ -412,9 +414,10 @@
     { y: 30 },
     { y: 22 },
     { y: 36.5 },
-    { y: 52, anchor: "start" },
-    { y: 66, anchor: "start" },
-    { y: 80, anchor: "start" },
+    { y: 45, anchor: "start" },
+    { y: 56, anchor: "start" },
+    { y: 67, anchor: "start" },
+    { y: 79, anchor: "start" },
     { y: 90, anchor: "start" },
   ];
 

@@ -138,12 +138,12 @@ window.projects = [
       "연결이 끊기거나 서버를 다시 켜도 같은 작업을 이어받게 했습니다.",
     ],
     result:
-      "같은 캐릭터로 동작별 8장 스프라이트와 시트를 만듭니다. 함께 보이는 그림은 참고 영상으로 만든 승룡권 시트입니다. 영상 모델이 동작을 일찍 끝내면 뒤쪽 칸이 거의 같은 그림이 되고, 캐릭터가 등을 돌리거나 배경이 남는 결과도 있습니다.",
+      "같은 캐릭터로 동작별 8장 스프라이트와 시트를 만듭니다. 함께 보이는 그림은 영상참고 방식으로 만든 승룡권입니다. 회색 인형 참고 영상(왼쪽)과 생성된 영상(오른쪽)을 나란히 둔 것, 8칸을 이어 붙인 애니메이션, 그 시트, 그리고 다른 참고 영상으로 다시 만든 승룡권(#22) 순서입니다. 영상 모델이 동작을 일찍 끝내면 뒤쪽 칸이 거의 같은 그림이 되고, #22처럼 중간에 캐릭터가 등을 돌리거나 배경이 남는 결과도 있습니다.",
     stack: ["TypeScript", "React", "Vite", "Three.js", "fal", "Kling 3", "ffmpeg", "sharp"],
     repo: "https://github.com/buc89l2nb41/SpriteGen",
     demo: null,
     youtube: null,
-    images: ["./assets/spritegen/uppercut-sheet.png"],
+    images: ["./assets/spritegen/uppercut-reference.gif", "./assets/spritegen/uppercut.gif", "./assets/spritegen/uppercut-sheet.png", "./assets/spritegen/uppercut-22.gif"],
   },
   {
     title: "GGPO Webgame",

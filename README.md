@@ -11,14 +11,14 @@ AI가 손댈 곳은 도구로 열어 두고, 결과는 엔진 규칙이나 사�
 
 | # | 작업 | 한 줄 | 확인 방법 | 레포 |
 | --- | --- | --- | --- | --- |
-| 1 | **StepCut** | 시나리오대로 웹 앱을 조작·녹화하고, 에이전트가 MCP 도구로 데모 영상을 편집해 완성합니다 | 웹 UI · 완성 영상 장면 | [GitHub](https://github.com/buc89l2nb41/StepCut) |
+| 1 | **StepCut** | 시나리오대로 웹 앱을 조작·녹화하고, 에이전트가 MCP 도구로 데모 영상을 편집해 완성합니다 | 웹 UI · 에이전트 대화 · 미리보기 영상 | [GitHub](https://github.com/buc89l2nb41/StepCut) |
 | 2 | **Beat Mapper** | 음악 파일에서 비트를 찾아 리듬 게임 레벨을 만들고 다섯 가지 방식으로 바로 플레이합니다 (AI 모델 없이 신호 처리만) | [플레이](https://beat-mapper-opal.vercel.app) | [GitHub](https://github.com/buc89l2nb41/BeatMapper) |
-| 3 | **Deck Lab** | 덱빌더 게임과, 같은 규칙 엔진으로 봇이 1만 판을 돌려 너무 센 카드와 적을 찾는 밸런스 시뮬레이터입니다 | 스크린샷 · 테스트 48개 · 조정 전후 | [GitHub](https://github.com/buc89l2nb41/DeckLab) |
+| 3 | **Deck Lab** | 덱빌더 게임과, 같은 규칙 엔진으로 봇이 1만 판을 돌려 너무 센 카드와 적을 찾는 밸런스 시뮬레이터입니다 | [플레이](https://deck-lab-khaki.vercel.app) | [GitHub](https://github.com/buc89l2nb41/DeckLab) |
 | 4 | **Prompt Editor** | 언리얼 에디터 패널에서 문장으로 지시하면 AI가 MCP 도구로 에디터를 다룹니다 | [영상](https://www.youtube.com/watch?v=ukDAZP5qFCc) | [GitHub](https://github.com/buc89l2nb41/UnrealPromptEditor) |
 | 5 | **Prompt Asset Forge** | 테마 한 줄로 프롬프트 → PNG → GLB를 한꺼번에 만듭니다 | [영상](https://www.youtube.com/watch?v=a6JBpMLviHk) | [GitHub](https://github.com/buc89l2nb41/PromptAssetForge) |
 | 6 | **Low Poly Cultivar** | 무거운 메시를 여러 설정으로 줄이고 네 방향 유사도로 고릅니다 | [영상](https://www.youtube.com/watch?v=5jGktxpn7FM) | [GitHub](https://github.com/buc89l2nb41/LowPolyCultivar) |
 | 7 | **GrowRoll** | 위 도구로 만든 소품이 들어간 3D 웹 게임입니다 | [플레이](https://grow-roll-client.vercel.app) | [GitHub](https://github.com/buc89l2nb41/GrowRoll) |
-| 8 | **Godot NNUE Prompt Chess** | LLM이 고른 수를 Stockfish 후보와 규칙으로 거릅니다 | 스크린샷 · 게이트 테스트 | [GitHub](https://github.com/buc89l2nb41/GodotNnuePromptChess) |
+| 8 | **Godot NNUE Prompt Chess** | 에이전트와 채팅하며 두는 체스입니다. AI의 수·추천 수·연습 포지션을 Stockfish 후보와 규칙으로 거릅니다 | 게임 화면 · 게이트 테스트 84건 | [GitHub](https://github.com/buc89l2nb41/GodotNnuePromptChess) |
 | 9 | **SpriteGen** | 기준 그림 한 장을 고정하고 동작만 바꿔 스프라이트를 만듭니다 | 승룡권 애니메이션 · 시트 | [GitHub](https://github.com/buc89l2nb41/SpriteGen) |
 | 10 | **GGPO Webgame** | AI로 뽑은 스프라이트를 넣은 브라우저 격투 게임 프로토타입입니다 | [플레이](https://ggpo-webgame.vercel.app) | [GitHub](https://github.com/buc89l2nb41/GGPO_Webgame) |
 

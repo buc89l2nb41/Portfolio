@@ -57,15 +57,15 @@ window.projects = [
       "에이전트와 대화하며 계획을 고치고, 승인·녹화 버튼과 영상 검토가 한 화면에 있는 로컬 웹 UI를 붙였습니다.",
     ],
     result:
-      "명령 한 번으로 에이전트가 SpriteGen 데모 영상(42.1초, 자막 9개, 클릭 확대 7곳)을 4분 44초 만에 만들었고, 재촬영은 0번, 꼭 보여 줄 기능은 4개 모두 들어갔습니다. 이때는 OBS로 녹화했고, OBS를 뺀 뒤 자체 녹화로 같은 시나리오를 다시 찍었을 때도 15단계가 모두 통과하고 빠진 프레임은 0개였습니다. 함께 보이는 그림은 웹 UI와 그 영상의 장면입니다. 지금은 웹 앱만 찍을 수 있고 Godot·Unreal은 드라이버가 따로 필요하며, 화면에 개인 정보가 보이는지는 사람이 확인해야 합니다.",
+      "명령 한 번으로 에이전트가 SpriteGen 데모 영상(42.1초, 자막 9개, 클릭 확대 7곳)을 4분 44초 만에 만들었고, 재촬영은 0번, 꼭 보여 줄 기능은 4개 모두 들어갔습니다. 이때는 OBS로 녹화했고, OBS를 뺀 뒤 자체 녹화로 같은 시나리오를 다시 찍었을 때도 15단계가 모두 통과하고 빠진 프레임은 0개였습니다. 함께 보이는 그림은 StepCut 웹 UI입니다. 에이전트와 계획을 나누는 화면, 에이전트가 MCP 도구를 불러 가며 답한 대화와 미리보기 영상·검사 결과, 에이전트가 정리한 계획과 단계 목록 순서입니다. 지금은 웹 앱만 찍을 수 있고 Godot·Unreal은 드라이버가 따로 필요하며, 화면에 개인 정보가 보이는지는 사람이 확인해야 합니다.",
     stack: ["Python", "Playwright", "ffmpeg", "MCP", "Cursor agent CLI", "Claude Code"],
     repo: "https://github.com/buc89l2nb41/StepCut",
     demo: null,
     youtube: null,
     images: [
       "./assets/stepcut/web-ui.png",
-      "./assets/stepcut/spritegen-cut.png",
-      "./assets/stepcut/spritegen-uppercut.png",
+      "./assets/stepcut/agent-chat-video.png",
+      "./assets/stepcut/agent-plan.png",
     ],
   },
   {
@@ -134,21 +134,22 @@ window.projects = [
     title: "Godot NNUE Prompt Chess",
     short: "Prompt Chess",
     problem:
-      "LLM에게 체스 수를 맡기면 없는 수나 규칙에 어긋나는 수를 둘 때가 있습니다. 말로 스타일을 지시하는 재미는 살리되, 보드에 올라가는 수는 믿을 수 있어야 했습니다.",
+      "LLM에게 체스 수나 연습 포지션을 맡기면 없는 수, 규칙에 어긋나는 수, 말이 안 되는 포지션을 내놓을 때가 있습니다. 채팅으로 오프닝을 고르고 연습을 요청하는 재미는 살리되, 보드에 올라가는 것은 믿을 수 있어야 했습니다.",
     did: [
-      "Godot 체스에 '공격적으로', '이 오프닝으로' 같은 지시를 받는 AI 상대 모드를 붙였습니다.",
+      "Godot 체스에 에이전트와 채팅하며 두는 모드를 붙였습니다. '시실리안 나이도프로 둬 줘', '나에게 수를 추천해 줘', '비나 메이트 연습하게 세팅해 줘'처럼 말하면 오프닝대로 두고, 내 수를 추천하고, 연습 포지션을 보드에 올립니다.",
       "Stockfish(NNUE)가 지금 장면에서 둘 만한 후보 수 여러 개를 먼저 뽑고, AI는 그 목록 안에서만 고릅니다.",
       "AI 쪽은 옆에서 도는 Python(FastAPI) 프로그램이 Cursor API로 처리합니다.",
-      "후보 밖이거나 규칙에 맞지 않는 수는 게임이 보드 사본에 먼저 둬 보고 막은 뒤 엔진 후보로 바꿉니다. 판정마다 [GATE] 기록을 남기고 채팅창에 교체 사실을 보여 줍니다.",
-      "API 키 없이 돌릴 수 있는 게이트 테스트(Python 4건, Godot 12건)를 만들었습니다.",
+      "후보 밖이거나 규칙에 맞지 않는 수는 게임이 보드 사본에 먼저 둬 보고 막은 뒤 엔진 후보로 바꿉니다. 추천 수도 내 쪽 후보 안에 있어야 파란 칸으로 표시합니다. 판정마다 [GATE] 기록을 남기고 채팅창에 교체 사실을 보여 줍니다.",
+      "연습 포지션 23개(기물 메이트 11, 메이트 패턴 12)를 직접 만들어 두고, 목록에 없는 요청은 에이전트가 FEN을 만듭니다. 어느 쪽이든 규칙·기물 구성·엔진 확인을 통과해야 보드에 올라가고, 실패하면 이유를 붙여 한 번만 다시 요청합니다.",
+      "API 키 없이 돌릴 수 있는 게이트 테스트(Python 39건, Godot 45건)를 만들었습니다.",
     ],
     result:
-      "테스트로 AI 답에 불법 수 e8e1을 넣었더니 게이트가 엔진 후보 e7e6으로 바꿔 보드에 올렸고, 게이트 테스트는 모두 통과했습니다. 오프닝 책 수라고 표시된 수는 후보 검사를 건너뛰고 규칙 검사만 거칩니다.",
-    stack: ["Godot", "GDScript", "Stockfish NNUE", "Python", "FastAPI", "Cursor API"],
+      "테스트로 AI 답에 불법 수 e8e1을 넣었더니 게이트가 엔진 후보 e7e6으로 바꿔 보드에 올렸고, 게이트 테스트는 Python 39/39, Godot 45/45 모두 통과했습니다. 실제 LLM 응답으로 나이도프 오프닝과 추천 수 e2e4를 표시하는 데 12.7초, 목록에 없는 Hook mate 포지션을 에이전트가 만들어 검사를 통과시키는 데 70.7초가 걸렸습니다. 함께 보이는 그림은 불법 수 교체, 추천 수 표시, 에이전트가 만든 포지션, 비나 메이트 연습 화면입니다. 포지션 게이트는 그 포지션이 요청한 패턴과 같은 모양인지까지는 판단하지 않고, 오프닝 책 수라고 표시된 수는 규칙 검사만 거칩니다.",
+    stack: ["Godot", "GDScript", "Stockfish NNUE", "Python", "FastAPI", "Cursor SDK"],
     repo: "https://github.com/buc89l2nb41/GodotNnuePromptChess",
     demo: null,
     youtube: null,
-    images: ["./assets/chess/gate-demo.png"],
+    images: ["./assets/chess/gate-demo.png", "./assets/chess/agent-recommend.png", "./assets/chess/setup-hook-agent.png", "./assets/chess/setup-kbn.png"],
   },
   {
     title: "SpriteGen",
@@ -207,6 +208,7 @@ window.projects = [
   },
   {
     title: "Deck Lab",
+    game: true,
     problem:
       "카드 게임은 카드 하나의 수치만 바꿔도 전체 판이 달라져서, 어떤 카드나 적이 너무 센지 사람이 여러 판을 해 보며 찾기 어렵습니다.",
     did: [
@@ -219,7 +221,7 @@ window.projects = [
       "규칙 엔진 테스트 48개가 모두 통과했고, 같은 시드 1~10,000에서 Node와 Chrome의 승률이 26.63%로 같았습니다. 탐욕 봇 1만 판은 Chrome Web Worker 11개로 2.13초가 걸렸습니다. 시뮬레이터가 표시한 카드(거울 플라스크)와 적(소금 게)에 제안값을 적용하자 그 카드의 승률 차이는 +19.8%p에서 +8.9%p로, 그 적의 전투당 피해는 8.46에서 6.24로 내려갔고 전체 승률은 26.63%에서 26.26%로 거의 그대로였습니다. 함께 보이는 그림은 플레이 화면, 시뮬레이션 진행 중, 조정 전후 비교, 카드 편집입니다. 승률은 한 수 앞만 보는 봇 기준이라 사람이 했을 때의 승률은 아닙니다.",
     stack: ["TypeScript", "Vite", "Canvas 2D", "Web Worker", "Node worker_threads", "Playwright"],
     repo: "https://github.com/buc89l2nb41/DeckLab",
-    demo: null,
+    demo: "https://deck-lab-khaki.vercel.app",
     youtube: null,
     images: ["./assets/decklab/play.png", "./assets/decklab/sim-running.png", "./assets/decklab/before-after.png", "./assets/decklab/edit-card.png"],
   },

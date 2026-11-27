@@ -9,17 +9,19 @@
     [68, 22],
     [58, 34],
     [45, 48],
-    [37, 57],
-    [29, 66],
-    [21, 75],
-    [13, 84],
+    [38.3, 55.5],
+    [31.7, 63],
+    [25, 70.5],
+    [18.3, 78],
+    [11.7, 85.5],
     [5, 93],
   ];
 
-  // 별 10개의 차례. dipper 좌표 수와 같아야 한다. 마지막 "기타"는 otherGroups를 묶어 보여 준다.
+  // 별 11개의 차례. dipper 좌표 수와 같아야 한다. 마지막 "기타"는 otherGroups를 묶어 보여 준다.
   const starTitles = [
     "StepCut",
     "Beat Mapper",
+    "Deck Lab",
     "Prompt Editor",
     "Prompt Asset Forge",
     "Low Poly Cultivar",
@@ -417,10 +419,11 @@
     { y: 22 },
     { y: 36.5 },
     { y: 45, anchor: "start" },
-    { y: 55, anchor: "start" },
-    { y: 64, anchor: "start" },
-    { y: 73.5, anchor: "start" },
-    { y: 83, anchor: "start" },
+    { y: 53.5, anchor: "start" },
+    { y: 61, anchor: "start" },
+    { y: 68.5, anchor: "start" },
+    { y: 76, anchor: "start" },
+    { y: 83.5, anchor: "start" },
     { y: 92.5, anchor: "start" },
   ];
 

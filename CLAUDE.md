@@ -22,13 +22,13 @@
     - 선택: `short`(별자리 그림 위 짧은 이름), `game: true`(데모 버튼이 "플레이"), `links: [{label, href}]`(GitHub 링크 여러 개)
     - `hidden: true`면 사이트에 안 나옵니다. `repo`가 없는 항목도 안 나옵니다.
 - `sky.js` — 화면을 그립니다.
-  - `starTitles`: 별 10개의 차례 (지금: Claude로 만든 StepCut → Beat Mapper가 먼저, 그 뒤 Prompt Editor → Prompt Asset Forge → Low Poly Cultivar → GrowRoll → Godot NNUE Prompt Chess → SpriteGen → GGPO Webgame → 기타). 좌표는 `dipper`, 그림 위 이름 자리는 `nameLabels`. 별을 늘리거나 줄이면 세 배열의 길이를 같이 맞춥니다.
+  - `starTitles`: 별 11개의 차례 (지금: Claude로 만든 StepCut → Beat Mapper → Deck Lab이 먼저, 그 뒤 Prompt Editor → Prompt Asset Forge → Low Poly Cultivar → GrowRoll → Godot NNUE Prompt Chess → SpriteGen → GGPO Webgame → 기타). 좌표는 `dipper`, 그림 위 이름 자리는 `nameLabels`. 별을 늘리거나 줄이면 세 배열의 길이를 같이 맞춥니다.
   - `otherGroups`: "기타" 별 안의 묶음 (배포한 AI 서비스 / 브라우저 자동화 연습). `OTHER_LEAD`가 그 별의 첫 문장.
   - 첫 화면은 `window.profile`로 그립니다.
   - 미디어: `youtube`가 있으면 영상을 먼저, 그 뒤에 `images`를 썸네일로 넘겨 보기로 보여 줍니다.
   - 문구 속 다른 작업 이름은 자동으로 그 별로 가는 링크가 됩니다.
 - `sky.css` — 스타일. 맨 뒤 "재개편" 블록이 문제/한 일/결과와 2단 레이아웃(글 왼쪽, 영상·사진 오른쪽, 1100px 이하에서 한 단)입니다.
-- `assets/` — 실제 스크린샷만 둡니다 (`prompteditor/`, `stepcut/`, `lowpoly/`, `growroll/`, `chess/`, `spritegen/`, `ggpo/`, `beatmapper/`).
+- `assets/` — 실제 스크린샷만 둡니다 (`prompteditor/`, `stepcut/`, `lowpoly/`, `growroll/`, `chess/`, `spritegen/`, `ggpo/`, `beatmapper/`, `decklab/`).
 
 ## 자동 검사와 배포
 - `.github/workflows/pages.yml`: main push → `check` job(`node scripts/check-site.mjs`) → 통과하면 `deploy` job이 `index.html`, `projects.js`, `sky.js`, `sky.css`, `assets/`만 Pages에 올립니다. PR은 검사만.

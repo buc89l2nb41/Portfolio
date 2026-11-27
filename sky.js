@@ -18,15 +18,15 @@
 
   // 별 10개의 차례. dipper 좌표 수와 같아야 한다. 마지막 "기타"는 otherGroups를 묶어 보여 준다.
   const starTitles = [
-    "Prompt Editor",
     "StepCut",
+    "Beat Mapper",
+    "Prompt Editor",
     "Prompt Asset Forge",
     "Low Poly Cultivar",
     "GrowRoll",
     "Godot NNUE Prompt Chess",
     "SpriteGen",
     "GGPO Webgame",
-    "Beat Mapper",
     "기타",
   ];
 

@@ -22,7 +22,7 @@
     - 선택: `short`(별자리 그림 위 짧은 이름), `game: true`(데모 버튼이 "플레이"), `links: [{label, href}]`(GitHub 링크 여러 개)
     - `hidden: true`면 사이트에 안 나옵니다. `repo`가 없는 항목도 안 나옵니다.
 - `sky.js` — 화면을 그립니다.
-  - `starTitles`: 별 10개의 차례 (지금: Prompt Editor → StepCut → Prompt Asset Forge → Low Poly Cultivar → GrowRoll → Godot NNUE Prompt Chess → SpriteGen → GGPO Webgame → Beat Mapper → 기타). 좌표는 `dipper`, 그림 위 이름 자리는 `nameLabels`. 별을 늘리거나 줄이면 세 배열의 길이를 같이 맞춥니다.
+  - `starTitles`: 별 10개의 차례 (지금: Claude로 만든 StepCut → Beat Mapper가 먼저, 그 뒤 Prompt Editor → Prompt Asset Forge → Low Poly Cultivar → GrowRoll → Godot NNUE Prompt Chess → SpriteGen → GGPO Webgame → 기타). 좌표는 `dipper`, 그림 위 이름 자리는 `nameLabels`. 별을 늘리거나 줄이면 세 배열의 길이를 같이 맞춥니다.
   - `otherGroups`: "기타" 별 안의 묶음 (배포한 AI 서비스 / 브라우저 자동화 연습). `OTHER_LEAD`가 그 별의 첫 문장.
   - 첫 화면은 `window.profile`로 그립니다.
   - 미디어: `youtube`가 있으면 영상을 먼저, 그 뒤에 `images`를 썸네일로 넘겨 보기로 보여 줍니다.

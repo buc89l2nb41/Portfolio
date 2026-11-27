@@ -9,13 +9,14 @@
     [68, 22],
     [58, 34],
     [45, 48],
-    [35, 59],
-    [25, 70],
-    [16, 80],
-    [7, 90],
+    [37, 57],
+    [29, 66],
+    [21, 75],
+    [13, 84],
+    [5, 93],
   ];
 
-  // 별 9개의 차례. dipper 좌표 수와 같아야 한다. 마지막 "기타"는 otherGroups를 묶어 보여 준다.
+  // 별 10개의 차례. dipper 좌표 수와 같아야 한다. 마지막 "기타"는 otherGroups를 묶어 보여 준다.
   const starTitles = [
     "Prompt Editor",
     "StepCut",
@@ -25,6 +26,7 @@
     "Godot NNUE Prompt Chess",
     "SpriteGen",
     "GGPO Webgame",
+    "Beat Mapper",
     "기타",
   ];
 
@@ -415,10 +417,11 @@
     { y: 22 },
     { y: 36.5 },
     { y: 45, anchor: "start" },
-    { y: 56, anchor: "start" },
-    { y: 67, anchor: "start" },
-    { y: 79, anchor: "start" },
-    { y: 90, anchor: "start" },
+    { y: 55, anchor: "start" },
+    { y: 64, anchor: "start" },
+    { y: 73.5, anchor: "start" },
+    { y: 83, anchor: "start" },
+    { y: 92.5, anchor: "start" },
   ];
 
   points.forEach((point, index) => {

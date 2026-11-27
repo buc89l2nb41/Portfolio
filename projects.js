@@ -186,6 +186,24 @@ window.projects = [
     youtube: null,
     images: ["./assets/ggpo/sprite-demo.gif"],
   },
+  {
+    title: "Beat Mapper",
+    problem:
+      "리듬 게임 레벨은 곡을 들으며 노트를 하나씩 찍어 만들어야 합니다. AI 모델 없이 신호 처리 코드만으로 음악 파일에서 바로 플레이할 수 있는 레벨을 만들 수 있는지 해 보고 싶었습니다.",
+    did: [
+      "음악 파일을 브라우저에 끌어다 놓으면 Web Worker에서 온셋(spectral flux)을 찾고, 자기상관과 Viterbi로 시간에 따라 변하는 템포를 잡은 뒤 동적 계획법으로 비트를 정합니다. 서버나 API 키는 쓰지 않고, 같은 파일은 언제나 같은 레벨이 됩니다.",
+      "비트 근처의 온셋만 난이도별로 골라 노트로 놓고, 그 순간 가장 센 주파수 대역으로 노트의 줄을 정합니다.",
+      "원형 궤도 3키·1키, 가로 4키, 세로 4키 네 가지 방식으로 바로 플레이합니다. 판정은 오디오 출력 시계 기준 ms 오차로 하고, 결과 화면에 오차 분포와 오프셋 보정을 넣었습니다.",
+      "비트 위치를 아는 합성 트랙 8개를 코드로 만들어 정확도와 속도를 재는 검증 스크립트를 만들고, 단순한 에너지 임계값 방식과 비교했습니다.",
+    ],
+    result:
+      "합성 트랙 7곡 평균으로 온셋 F 99.9%(±50ms), 비트 F 99.5%(±70ms), 템포 오차 0.49%였고, 대조군은 각각 86.0%, 59.0%, 19.53%였습니다. 51.5초 데모 곡을 Chrome Web Worker에서 324ms에 분석했습니다. 함께 보이는 그림은 분석 화면, 원형 궤도 플레이, 결과 화면, 가로 4키 플레이입니다. 이 숫자는 깨끗한 합성 트랙에서 잰 것이라 실제 음악에서의 정확도는 재지 않았고, 드럼 없는 느린 곡에서는 온셋 F가 40.6%로 떨어졌습니다.",
+    stack: ["TypeScript", "Vite", "Web Audio API", "Canvas 2D", "Web Worker", "Playwright", "ffmpeg"],
+    repo: "https://github.com/buc89l2nb41/BeatMapper",
+    demo: null,
+    youtube: null,
+    images: ["./assets/beatmapper/analysis.png", "./assets/beatmapper/orbit-play.png", "./assets/beatmapper/results.png", "./assets/beatmapper/timeline-play.png"],
+  },
 
   // 기타 — 한두 문장만
   {

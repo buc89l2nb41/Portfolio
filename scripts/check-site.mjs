@@ -6,8 +6,9 @@
 // 1. JS 문법 (node --check)
 // 2. 금지어: mock 이미지 경로, 그리고 FORBIDDEN_WORDS 환경변수의 단어 (회사 이름, 자리표시 영상 ID 등)
 //    (FORBIDDEN_WORDS는 레포 Secret으로 넣습니다. 단어 자체를 공개 파일에 적지 않기 위해서입니다.)
-// 3. projects.js의 이미지 경로와 index.html이 부르는 파일이 실제로 있는지
+// 3. projects.js의 이미지 경로와 index.html·work.html이 부르는 파일이 실제로 있는지
 // 4. 사이트에 나오는 작업(hidden이 아닌 것)에 repo 링크가 있는지
+// 5. 케이스 스터디가 있는 작업의 slug 중복, oneLine, didTitles 개수
 
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
@@ -16,8 +17,9 @@ import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const publicFiles = ["index.html", "projects.js", "sky.js", "sky.css", "README.md", "CLAUDE.md"];
-const scripts = ["projects.js", "sky.js"];
+const pages = ["index.html", "work.html"];
+const publicFiles = [...pages, "projects.js", "site.js", "site.css", "README.md", "CLAUDE.md"];
+const scripts = ["projects.js", "site.js"];
 const problems = [];
 
 const read = (file) => readFileSync(join(root, file), "utf8");
@@ -64,15 +66,27 @@ for (const project of projects) {
   }
 }
 
-const html = read("index.html");
-for (const match of html.matchAll(/(?:src|href)="\.\/([^"?#]+)/g)) {
-  if (!existsSync(join(root, match[1]))) problems.push(`index.html: 파일이 없습니다 → ${match[1]}`);
+for (const page of pages) {
+  for (const match of read(page).matchAll(/(?:src|href)="\.\/([^"?#]+)/g)) {
+    if (!existsSync(join(root, match[1]))) problems.push(`${page}: 파일이 없습니다 → ${match[1]}`);
+  }
 }
 
 // 4. 레포 링크 규칙
 for (const project of projects) {
   if (!project.hidden && !project.repo) {
     problems.push(`${project.title}: 사이트에 나오는데 repo가 없습니다. 숨기려면 hidden: true를 넣으세요.`);
+  }
+}
+
+// 5. 케이스 스터디 칸
+const slugs = new Set();
+for (const project of projects.filter((p) => !p.hidden && p.slug)) {
+  if (slugs.has(project.slug)) problems.push(`${project.title}: slug "${project.slug}"가 겹칩니다.`);
+  slugs.add(project.slug);
+  if (!project.oneLine) problems.push(`${project.title}: oneLine이 없습니다.`);
+  if (project.didTitles && project.didTitles.length !== (project.did || []).length) {
+    problems.push(`${project.title}: didTitles(${project.didTitles.length})와 did(${(project.did || []).length}) 개수가 다릅니다.`);
   }
 }
 

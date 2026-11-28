@@ -56,7 +56,7 @@ jobs:
       - name: Collect site files
         run: |
           mkdir _site
-          cp -r index.html projects.js sky.js sky.css assets _site/
+          cp -r index.html work.html projects.js site.js site.css assets _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

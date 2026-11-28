@@ -7,7 +7,7 @@ AI가 손댈 곳은 도구로 열어 두고, 결과는 엔진 규칙이나 사�
 
 ---
 
-## 주요 작업 (사이트의 별 순서)
+## 주요 작업 (사이트의 순서)
 
 | # | 작업 | 한 줄 | 확인 방법 | 레포 |
 | --- | --- | --- | --- | --- |
@@ -36,17 +36,18 @@ AI가 손댈 곳은 도구로 열어 두고, 결과는 엔진 규칙이나 사�
 
 ## 저장소 구조
 
-빌드 도구가 없는 정적 사이트입니다. `index.html`을 브라우저로 열면 됩니다.
+빌드 도구가 없는 정적 사이트입니다. 로컬 서버(`python -m http.server`)로 열어 봅니다.
 
 | 파일 | 역할 |
 | --- | --- |
-| `index.html` | 뼈대 (별자리 SVG, 옆 목록) |
+| `index.html` | 첫 화면 (히어로, 작업 지도, 작업 목록, 기타, 연락) |
+| `work.html` | 케이스 스터디 한 개 (`work.html?p=stepcut` 등) |
 | `projects.js` | 문구 데이터. `window.profile`과 `window.projects` |
-| `sky.js` | 별 차례, 기타 묶음, 화면 전환 |
-| `sky.css` | 스타일 |
+| `site.js` | 작업 차례, 기타 묶음, 두 페이지 그리기 |
+| `site.css` | 스타일 |
 | `assets/` | 스크린샷 |
 
-문구를 고칠 때는 `projects.js`만 바꾸면 됩니다. 별 작업은 `problem` / `did` / `result`, 기타 작업은 `summary`를 씁니다.
+문구를 고칠 때는 `projects.js`만 바꾸면 됩니다. 주요 작업은 `problem` / `did` / `result`와 케이스 스터디 칸(`oneLine`, `metrics`, `didTitles` 등), 기타 작업은 `summary`를 씁니다.
 
 ## 자동 검사와 배포 (GitHub Actions)
 

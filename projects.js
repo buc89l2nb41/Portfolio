@@ -7,6 +7,10 @@
  *   short: 별자리 그림 위 이름이 길 때 쓰는 짧은 이름.
  *   game: true 면 데모 버튼이 "플레이"로 나옵니다.
  *   links: GitHub 링크를 여러 개 보여 줄 때 [{ label, href }].
+ *   주요 작업(케이스 스터디)만 쓰는 칸:
+ *     slug(work.html?p=… 주소), category(작은 분류), since(레포를 만든 달), platform,
+ *     oneLine(굵은 한 줄 정의), metrics[{ value, label, note }](실제로 잰 숫자만, 2~4개),
+ *     didTitles[](did 각 항목의 짧은 제목, did와 개수가 같아야 합니다).
  * 문구는 쉬운 존댓말로, 수치는 실제로 잰 것만 씁니다.
  */
 window.profile = {
@@ -22,6 +26,16 @@ window.profile = {
 window.projects = [
   {
     title: "Prompt Editor",
+    slug: "prompteditor",
+    category: "UNREAL EDITOR AGENT",
+    since: "2026.10",
+    platform: "UE 5.4 에디터 플러그인 · Windows",
+    oneLine: "언리얼 에디터 패널에서 문장으로 지시하면 AI가 MCP 도구로 에디터를 다루는 플러그인",
+    metrics: [
+      { value: "180개", label: "AI가 쓰는 MCP 도구" },
+      { value: "UE 5.4", label: "확인한 엔진 버전", note: "Windows" },
+    ],
+    didTitles: ["에디터 안 프롬프트 패널", "옆에서 도는 Python 서버", "MCP 도구 180개로만 조작", "3D 생성물은 사람이 승인", "위험한 상태에서는 거절"],
     problem:
       "액터를 놓고 라이트와 머티리얼을 고치는 언리얼 에디터 작업을 말로 맡기고 싶었습니다. 하지만 AI가 에디터를 마음대로 건드리면 결과를 믿기 어렵습니다.",
     did: [
@@ -47,6 +61,18 @@ window.projects = [
   },
   {
     title: "StepCut",
+    slug: "stepcut",
+    category: "DEMO VIDEO AGENT",
+    since: "2026.11",
+    platform: "로컬 웹 UI · CLI · MCP 서버",
+    oneLine: "시나리오대로 웹 앱을 조작·녹화하고, 에이전트가 MCP 도구로 데모 영상을 완성하는 도구",
+    metrics: [
+      { value: "4분 44초", label: "명령 한 번에서 완성 영상까지" },
+      { value: "0번", label: "재촬영" },
+      { value: "15/15", label: "자체 녹화 단계 통과", note: "OBS를 뺀 뒤" },
+      { value: "0개", label: "빠진 프레임" },
+    ],
+    didTitles: ["시나리오대로 조작하고 직접 녹화", "녹화 첫 프레임 기준으로 모든 동작 기록", "자동 편집과 검사", "에이전트가 계획부터 완성 영상까지", "대화·승인·검토를 한 화면에"],
     problem:
       "포트폴리오에 넣을 데모 영상을 OBS로 찍고 DaVinci Resolve로 자르는 데 한 편에 2시간 넘게 걸렸습니다. 다시 찍을 때마다 동작 순서와 타이밍이 달라져 자막과 자르는 지점을 매번 새로 잡아야 했습니다.",
     did: [
@@ -70,6 +96,15 @@ window.projects = [
   },
   {
     title: "Prompt Asset Forge",
+    slug: "assetforge",
+    category: "3D ASSET BATCH",
+    since: "2026.07",
+    platform: "로컬 웹 도구",
+    oneLine: "테마 한 줄로 프롬프트 → PNG → GLB를 한꺼번에 만드는 로컬 도구",
+    metrics: [
+      { value: "39개", label: "GrowRoll 정원 소품 생성" },
+    ],
+    didTitles: ["테마 한 줄에서 프롬프트와 PNG", "PNG를 GLB로 한꺼번에", "Trellis 자동 시작"],
     problem:
       "GrowRoll에는 도토리, 화분, 버섯 같은 정원 소품이 많이 필요했습니다. Trellis로 3D 모델을 하나씩 뽑으면 너무 느렸습니다.",
     did: [
@@ -87,6 +122,17 @@ window.projects = [
   },
   {
     title: "Low Poly Cultivar",
+    slug: "lowpoly",
+    category: "MESH OPTIMIZER",
+    since: "2026.07",
+    platform: "로컬 웹 도구",
+    oneLine: "무거운 메시를 여러 설정으로 줄이고 네 방향 유사도로 고르는 도구",
+    metrics: [
+      { value: "17,559→5,715", label: "면 수", note: "나무 모델 1개" },
+      { value: "2.6MB→93KB", label: "파일 크기" },
+      { value: "48초", label: "1파일 처리" },
+    ],
+    didTitles: ["프리셋별 후보 메시", "네 방향 스프라이트로 유사도 점수", "자동 선택 또는 사람이 고르기", "여러 모델 배치 처리"],
     problem:
       "Trellis로 뽑은 메시가 무거워 GrowRoll이 버거웠습니다. gltfpack으로 줄여 보니 너무 깎으면 텍스처가 깨져서, 어떤 설정이 나은지 매번 눈으로 비교해야 했습니다.",
     did: [
@@ -110,6 +156,16 @@ window.projects = [
   },
   {
     title: "GrowRoll",
+    slug: "growroll",
+    category: "3D WEB GAME",
+    since: "2026.07",
+    platform: "웹 브라우저",
+    oneLine: "Prompt Asset Forge와 Low Poly Cultivar로 만든 소품이 들어간 3D 웹 게임",
+    metrics: [
+      { value: "460,865→99,577", label: "소품 39개 삼각형 합계" },
+      { value: "88.7MB→1.7MB", label: "소품 파일 크기 합계" },
+    ],
+    didTitles: ["굴리고 붙이는 물리", "릴레이 서버로 같은 맵 공유", "직접 만든 도구로 소품 제작"],
     game: true,
     problem:
       "굴려서 물건을 모아 커지는 3D 웹 게임입니다. 맵에 놓을 소품이 많이 필요했던 것이 Prompt Asset Forge와 Low Poly Cultivar를 만든 계기가 됐습니다.",
@@ -132,6 +188,18 @@ window.projects = [
   },
   {
     title: "Godot NNUE Prompt Chess",
+    slug: "chess",
+    category: "LLM GATE · CHESS",
+    since: "2026.07",
+    platform: "Godot 데스크톱",
+    oneLine: "AI가 고른 수와 연습 포지션을 Stockfish 후보와 규칙으로 거르는 채팅 체스",
+    metrics: [
+      { value: "84/84", label: "게이트 테스트 통과", note: "Python 39 · Godot 45" },
+      { value: "23개", label: "직접 만든 연습 포지션" },
+      { value: "12.7초", label: "오프닝 + 추천 수 표시", note: "실제 LLM 응답" },
+      { value: "70.7초", label: "에이전트가 만든 포지션 통과", note: "Hook mate" },
+    ],
+    didTitles: ["채팅으로 두는 체스", "엔진 후보 안에서만 고르기", "Python 서버가 Cursor API 처리", "수 게이트", "포지션 게이트", "API 키 없이 도는 테스트"],
     short: "Prompt Chess",
     problem:
       "LLM에게 체스 수나 연습 포지션을 맡기면 없는 수, 규칙에 어긋나는 수, 말이 안 되는 포지션을 내놓을 때가 있습니다. 채팅으로 오프닝을 고르고 연습을 요청하는 재미는 살리되, 보드에 올라가는 것은 믿을 수 있어야 했습니다.",
@@ -153,6 +221,16 @@ window.projects = [
   },
   {
     title: "SpriteGen",
+    slug: "spritegen",
+    category: "SPRITE PIPELINE",
+    since: "2026.11",
+    platform: "로컬 웹 도구",
+    oneLine: "기준 그림 한 장을 고정하고 동작만 바꿔 스프라이트를 만드는 도구",
+    metrics: [
+      { value: "8칸", label: "동작별 스프라이트" },
+      { value: "3가지", label: "동작 지시 방식" },
+    ],
+    didTitles: ["기준 그림 고정, 영상에서 8칸", "동작을 정하는 세 가지 방법", "에이전트용 HTTP 규칙", "끊겨도 이어받기"],
     problem:
       "이미지 생성으로 스프라이트 칸을 한 장씩 뽑으면 칸마다 얼굴과 옷이 바뀌었습니다.",
     did: [
@@ -171,6 +249,17 @@ window.projects = [
   },
   {
     title: "GGPO Webgame",
+    slug: "ggpo",
+    category: "FIGHTING GAME · NETCODE",
+    since: "2026.06",
+    platform: "웹 브라우저",
+    oneLine: "AI로 뽑은 스프라이트를 넣은 롤백 넷코드 브라우저 격투 게임 프로토타입",
+    metrics: [
+      { value: "60FPS", label: "고정 게임 루프" },
+      { value: "2프레임", label: "입력 지연", note: "설정값" },
+      { value: "8프레임", label: "최대 롤백", note: "설정값" },
+    ],
+    didTitles: ["브라우저 2D 격투", "롤백 넷코드", "스프라이트와 히트박스 편집기"],
     game: true,
     problem:
       "AI로 뽑은 캐릭터 스프라이트를 실제 게임에 넣어 움직여 보고 싶었고, 격투 게임의 롤백 넷코드(GGPO 방식)가 어떻게 돌아가는지도 궁금했습니다.",
@@ -189,6 +278,18 @@ window.projects = [
   },
   {
     title: "Beat Mapper",
+    slug: "beatmapper",
+    category: "RHYTHM GAME · SIGNAL PROCESSING",
+    since: "2026.11",
+    platform: "웹 브라우저",
+    oneLine: "AI 모델 없이 신호 처리만으로 음악 파일을 리듬 게임 레벨로 바꾸는 웹 게임",
+    metrics: [
+      { value: "99.9%", label: "온셋 F (±50ms)", note: "대조군 86.0%" },
+      { value: "99.5%", label: "비트 F (±70ms)", note: "대조군 59.0%" },
+      { value: "0.49%", label: "템포 오차", note: "대조군 19.53%" },
+      { value: "324ms", label: "51.5초 곡 분석", note: "Chrome Web Worker" },
+    ],
+    didTitles: ["브라우저 안에서 온셋·템포·비트 분석", "노트와 줄을 소리로 정하기", "다섯 가지 플레이 방식", "정답을 아는 트랙으로 검증"],
     game: true,
     problem:
       "리듬 게임 레벨은 곡을 들으며 노트를 하나씩 찍어 만들어야 합니다. AI 모델 없이 신호 처리 코드만으로 음악 파일에서 바로 플레이할 수 있는 레벨을 만들 수 있는지 해 보고 싶었습니다.",
@@ -208,6 +309,18 @@ window.projects = [
   },
   {
     title: "Deck Lab",
+    slug: "decklab",
+    category: "DECKBUILDER · BALANCE SIM",
+    since: "2026.11",
+    platform: "웹 브라우저",
+    oneLine: "덱빌더 게임과, 같은 규칙 엔진으로 봇이 1만 판을 돌려 너무 센 카드와 적을 찾는 밸런스 시뮬레이터",
+    metrics: [
+      { value: "2.13초", label: "탐욕 봇 1만 판", note: "Web Worker 11개" },
+      { value: "48/48", label: "규칙 엔진 테스트" },
+      { value: "26.63%", label: "Node·Chrome 승률 일치", note: "시드 1~10,000" },
+      { value: "+19.8→+8.9%p", label: "표시된 카드의 승률 차이", note: "제안값 적용 전후" },
+    ],
+    didTitles: ["시드로 재현되는 로그라이크 덱빌더", "봇이 대신 판을 돌리는 시뮬레이터", "너무 센 카드·적 표시와 조정 제안", "화면에서 고치고 나누기"],
     game: true,
     problem:
       "카드 게임은 카드 하나의 수치만 바꿔도 전체 판이 달라져서, 어떤 카드나 적이 너무 센지 사람이 여러 판을 해 보며 찾기 어렵습니다.",

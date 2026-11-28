@@ -283,80 +283,6 @@ ul {
   text-decoration: underline;
 }
 
-/* ---------- 작업 지도 ---------- */
-.map {
-  padding: clamp(72px, 9vw, 128px) 0;
-  overflow: hidden;
-}
-
-.map-grid {
-  display: grid;
-  grid-template-columns: minmax(240px, 1fr) 2fr;
-  gap: 32px;
-  align-items: center;
-}
-
-.map-title {
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.04em;
-  margin: 16px 0 18px;
-}
-
-.map-svg {
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
-.map-line {
-  fill: none;
-  stroke: var(--on-ink-soft);
-  stroke-width: 0.22;
-  stroke-dasharray: 0.8 0.8;
-  opacity: 0.7;
-}
-
-.star {
-  cursor: pointer;
-}
-
-.star-halo {
-  fill: var(--accent);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.star-dot {
-  fill: var(--on-ink);
-  transition: fill 0.25s ease;
-}
-
-.star text {
-  font-family: var(--font-body);
-  font-size: 2.35px;
-  font-weight: 600;
-  fill: var(--on-ink);
-  letter-spacing: -0.02em;
-}
-
-.star .star-no {
-  font-family: var(--font-mono);
-  font-size: 1.7px;
-  fill: var(--accent);
-}
-
-.star:hover .star-halo,
-.star:focus-visible .star-halo {
-  opacity: 0.35;
-}
-
-.star:hover .star-dot,
-.star:focus-visible .star-dot {
-  fill: var(--accent);
-}
-
 /* ---------- 섹션 머리 ---------- */
 .section-head {
   display: flex;
@@ -1023,7 +949,6 @@ ul {
 /* ---------- 좁은 화면 ---------- */
 @media (max-width: 1100px) {
   .work-grid,
-  .map-grid,
   .case-intro,
   .bg-grid,
   .hero-foot,
@@ -1074,11 +999,4 @@ ul {
     font-size: 2.1rem;
   }
 
-  .star text {
-    font-size: 3.4px;
-  }
-
-  .star .star-no {
-    font-size: 2.4px;
-  }
 }

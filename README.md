@@ -40,7 +40,7 @@ AI가 손댈 곳은 도구로 열어 두고, 결과는 엔진 규칙이나 사�
 
 | 파일 | 역할 |
 | --- | --- |
-| `index.html` | 첫 화면 (히어로, 작업 지도, 작업 목록, 기타, 연락) |
+| `index.html` | 첫 화면 (히어로, 작업 목록, 기타, 연락) |
 | `work.html` | 케이스 스터디 한 개 (`work.html?p=stepcut` 등) |
 | `projects.js` | 문구 데이터. `window.profile`과 `window.projects` |
 | `site.js` | 작업 차례, 기타 묶음, 두 페이지 그리기 |

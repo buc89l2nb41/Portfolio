@@ -1,5 +1,5 @@
 /* 화면을 그립니다. 문구는 projects.js에만 있습니다.
- * body[data-page="home"]  → index.html (첫 화면, 작업 지도, 작업 목록, 기타, 연락)
+ * body[data-page="home"]  → index.html (첫 화면, 작업 목록, 기타, 연락)
  * body[data-page="work"]  → work.html?p=<slug> (케이스 스터디 한 개)
  */
 (function () {
@@ -8,7 +8,7 @@
   const all = (window.projects || []).filter((project) => !project.hidden && project.repo);
   const profile = window.profile || {};
 
-  // 주요 작업의 차례. 별자리 좌표(MAP_POINTS)와 개수를 맞춥니다 (마지막 한 칸은 "기타").
+  // 주요 작업의 차례.
   const ORDER = [
     "StepCut",
     "Beat Mapper",
@@ -20,10 +20,6 @@
     "Godot NNUE Prompt Chess",
     "SpriteGen",
     "GGPO Webgame",
-  ];
-  const MAP_POINTS = [
-    [76, 14], [84, 26], [68, 22], [58, 34], [45, 48], [38.3, 55.5],
-    [31.7, 63], [25, 70.5], [18.3, 78], [11.7, 85.5], [5, 93],
   ];
   const OTHER_GROUPS = [
     { label: "배포한 AI 서비스", titles: ["TranslationChat", "AI Playlist Creator", "PersonaChat"] },
@@ -150,7 +146,6 @@
     return `<header class="nav">
       <a class="nav-logo" href="./index.html">${esc(profile.name || "Portfolio")}</a>
       <nav class="nav-links" aria-label="섹션">
-        <a href="${base}#map">Map</a>
         <a href="${base}#works">Works</a>
         <a href="${base}#others">Others</a>
         <a href="${base}#contact">Contact</a>
@@ -237,37 +232,6 @@
             ${latest ? `<a href="#w-${esc(latest.slug)}">( Latest — ${esc(latest.title)} ↓ )</a>` : ""}
           </div>
         </div>
-      </div>
-    </section>`;
-  }
-
-  function mapMarkup() {
-    const entries = [...works.map((p) => ({ label: p.short || p.title, href: `#w-${p.slug}` })), { label: "기타", href: "#others" }];
-    const points = MAP_POINTS.slice(0, entries.length);
-    const line = points.map(([x, y], i) => `${i ? "L" : "M"}${x} ${y}`).join(" ");
-    const stars = entries
-      .map((entry, i) => {
-        const [x, y] = points[i];
-        const right = x > 50;
-        return `<a class="star" href="${entry.href}" style="--d:${i * 70}ms">
-          <circle class="star-halo" cx="${x}" cy="${y}" r="3.2"></circle>
-          <circle class="star-dot" cx="${x}" cy="${y}" r="1.05"></circle>
-          <text x="${right ? x - 3 : x + 3}" y="${y + 0.9}" text-anchor="${right ? "end" : "start"}">
-            <tspan class="star-no">${pad(i + 1)}</tspan> ${esc(entry.label)}</text>
-        </a>`;
-      })
-      .join("");
-    return `<section class="map zone-ink" id="map">
-      <div class="wrap map-grid">
-        <div class="map-copy reveal">
-          <p class="label mono">( Work Map )</p>
-          <h2 class="map-title">별 하나가<br />작업 하나입니다</h2>
-          <p class="muted">Claude로 만든 최근 작업이 먼저 나옵니다. 별을 누르면 그 작업으로 내려갑니다.</p>
-        </div>
-        <svg class="map-svg" viewBox="-2 6 104 94" role="img" aria-label="작업 지도">
-          <path class="map-line" d="${line}"></path>
-          ${stars}
-        </svg>
       </div>
     </section>`;
   }
@@ -366,7 +330,6 @@
     root.innerHTML = `${headerMarkup("home")}
     <main id="main">
       ${heroMarkup()}
-      ${mapMarkup()}
       <section class="works zone-ink" id="works">
         <div class="wrap">
           <div class="section-head">

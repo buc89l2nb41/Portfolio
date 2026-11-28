@@ -20,12 +20,12 @@
     - 주요 작업: `problem`(BACKGROUND) / `did[]`(APPROACH) / `result`(RESULT·한계) / `stack` / `repo` / `demo` / `youtube` / `images`
     - 케이스 스터디 칸: `slug`, `category`, `since`(레포를 만든 달), `platform`, `oneLine`, `metrics[{value,label,note}]`(실제로 잰 숫자만, `A→B`는 전후로 그림), `didTitles[]`(did와 개수 같게)
     - 기타 작업: `summary`(한두 문장) / `stack` / `repo` / `demo`
-    - 선택: `short`(작업 지도 위 짧은 이름), `game: true`(버튼이 "플레이"), `links: [{label, href}]`(GitHub 링크 여러 개)
+    - 선택: `short`(짧은 이름, 지금은 안 씀), `game: true`(버튼이 "플레이"), `links: [{label, href}]`(GitHub 링크 여러 개)
     - `hidden: true`면 사이트에 안 나옵니다. `repo`가 없는 항목도 안 나옵니다.
 - `site.js` — 두 페이지를 그립니다 (`body[data-page]`가 `home`/`work`).
-  - `ORDER`: 주요 작업 차례 (지금: Claude로 만든 StepCut → Beat Mapper → Deck Lab이 먼저, 그 뒤 Prompt Editor → Prompt Asset Forge → Low Poly Cultivar → GrowRoll → Godot NNUE Prompt Chess → SpriteGen → GGPO Webgame). `MAP_POINTS`는 작업 지도(별자리) 좌표로 `ORDER` + "기타" 한 칸만큼 있어야 합니다.
+  - `ORDER`: 주요 작업 차례 (지금: Claude로 만든 StepCut → Beat Mapper → Deck Lab이 먼저, 그 뒤 Prompt Editor → Prompt Asset Forge → Low Poly Cultivar → GrowRoll → Godot NNUE Prompt Chess → SpriteGen → GGPO Webgame).
   - `OTHER_GROUPS`: Others 구역의 묶음 (배포한 AI 서비스 / 브라우저 자동화 연습). `OTHER_LEAD`가 그 구역의 첫 문장.
-  - 첫 화면 순서: 히어로 → 작업 지도(Map) → Selected Works(작업마다 같은 틀: 번호·분류·연도 → 제목 → 한 줄 → 숫자 → 버튼 → 큰 화면 + 썸네일) → Others → Contact.
+  - 첫 화면 순서: 히어로 → Selected Works(작업마다 같은 틀: 번호·분류·연도 → 제목 → 한 줄 → 숫자 → 버튼 → 큰 화면 + 썸네일) → Others → Contact.
   - 케이스 스터디 순서: 메타줄 → 제목·한 줄·스택·버튼 → 대표 화면 → Role/Since/Platform/Repo → Background → Approach(Point 카드) → Result(큰 숫자 + 결과 문단) → Gallery → Next Case.
   - 미디어: `youtube`가 있으면 영상을 먼저(첫 화면에서는 썸네일을 누르면 재생), 그 뒤에 `images`.
   - 문구 속 다른 작업 이름은 자동으로 그 케이스 스터디(기타 작업은 Others)로 가는 링크가 됩니다.
